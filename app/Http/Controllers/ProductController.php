@@ -7,33 +7,15 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     /**
-     * @var ProductRepository
-     */
-    protected $repository;
-
-    /**
-     * @var ProductValidator
-     */
-    protected $validator;
-
-    /**
-     * ProductsController constructor.
-     *
-     * @param ProductRepository $repository
-     * @param ProductValidator $validator
-     */
-    public function __construct(ProductRepository $repository, ProductValidator $validator)
-    {
-        $this->repository = $repository;
-        $this->validator = $validator;
-    }
-    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
+        echo '<pre>';
+        print_r("vao");
+        echo '</pre>';
 
     }
 
@@ -44,7 +26,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
