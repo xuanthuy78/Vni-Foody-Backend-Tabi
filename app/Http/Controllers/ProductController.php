@@ -2,10 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+use App\Product;
+use App\Repositories\ProductRepository;
+use App\Validators\ProductValidator;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    /**
+     * @var ProductRepository
+     */
+    protected $repository;
+
+    /**
+     * @var ProductValidator
+     */
+    protected $validator;
+
+    /**
+     * ProductsController constructor.
+     *
+     * @param ProductRepository $repository
+     * @param ProductValidator $validator
+     */
+    public function __construct(ProductRepository $repository, ProductValidator $validator)
+    {
+        $this->repository = $repository;
+        $this->validator = $validator;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,9 +38,14 @@ class ProductController extends Controller
      */
     public function index()
     {
-        echo '<pre>';
-        print_r("vao");
-        echo '</pre>';
+        $limit = \request()->get('limit');
+        $products = $this->repository->paginate(10);
+        if (\request()->wantsJson()) {
+            return [
+                'status' => 'success',
+                'data' => $products,
+            ];
+        }
 
     }
 
