@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Prettus\Repository\Contracts\Transformable;
@@ -10,7 +9,7 @@ use Prettus\Repository\Traits\TransformableTrait;
 
 class Product extends Model implements Transformable
 {
-    use TransformableTrait, Sluggable, SoftDeletes;
+    use TransformableTrait, SoftDeletes;
 
     protected $table = 'products';
     public $timestamps = true;
@@ -22,16 +21,16 @@ class Product extends Model implements Transformable
      */
     protected $fillable = ['thumbnail', 'category_id', 'brand_id', 'name', 'price', 'quality', 'description', 'content', 'code', 'promotion_price', 'promotion_description', 'alias'];
 
-    public function sluggable()
-    {
-        return [
-            'alias' => [
-                'source' => 'name',
-                'unique' => true,
-            ],
+    // public function sluggable()
+    // {
+    //     return [
+    //         'alias' => [
+    //             'source' => 'name',
+    //             'unique' => true,
+    //         ],
 
-        ];
-    }
+    //     ];
+    // }
 
     public function category()
     {

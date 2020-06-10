@@ -2,10 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+use App\Product;
+use App\Repositories\ProductRepository;
+use App\Validators\ProductValidator;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    /**
+     * @var ProductRepository
+     */
+    protected $repository;
+
+    /**
+     * @var ProductValidator
+     */
+    protected $validator;
+
+    /**
+     * ProductsController constructor.
+     *
+     * @param ProductRepository $repository
+     * @param ProductValidator $validator
+     */
+    public function __construct(ProductRepository $repository, ProductValidator $validator)
+    {
+        $this->repository = $repository;
+        $this->validator = $validator;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,9 +38,14 @@ class ProductController extends Controller
      */
     public function index()
     {
-        echo '<pre>';
-        print_r("vao");
-        echo '</pre>';
+        $limit = \request()->get('limit');
+        $products = $this->repository->paginate($limit);
+        if (\request()->wantsJson()) {
+            return [
+                'status' => 'success',
+                'data' => $products,
+            ];
+        }
 
     }
 
@@ -48,7 +78,15 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = $this->repository->find($id);
+
+        if (request()->wantsJson()) {
+            return response()->json([
+                'status' => 'success',
+                'data' => $product,
+            ]);
+        }
+
     }
 
     /**
@@ -82,6 +120,12 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->repository->delete($id);
+        if (request()->wantsJson()) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Xóa sản phẩm thành công',
+            ]);
+        }
     }
 }
