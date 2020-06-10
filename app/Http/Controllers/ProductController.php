@@ -39,7 +39,7 @@ class ProductController extends Controller
     public function index()
     {
         $limit = \request()->get('limit');
-        $products = $this->repository->paginate(10);
+        $products = $this->repository->paginate($limit);
         if (\request()->wantsJson()) {
             return [
                 'status' => 'success',
@@ -78,7 +78,15 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = $this->repository->find($id);
+
+        if (request()->wantsJson()) {
+            return response()->json([
+                'status' => 'success',
+                'data' => $product,
+            ]);
+        }
+
     }
 
     /**
@@ -112,6 +120,12 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->repository->delete($id);
+        if (request()->wantsJson()) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Xóa sản phẩm thành công',
+            ]);
+        }
     }
 }
