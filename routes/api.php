@@ -22,4 +22,6 @@ Route::group(['middleware' => 'api'], function () {
     Route::apiResource('product', 'ProductController');
     Route::apiResource('brand', 'BrandController');
     Route::apiResource('slide', 'SlideController');
+    Route::get('categories', 'ArticleController@showCategories');
+    Route::apiResource('articles', 'ArticleController');
 });
