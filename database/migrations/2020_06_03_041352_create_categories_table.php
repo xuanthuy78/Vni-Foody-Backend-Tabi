@@ -5,7 +5,6 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Kalnoy\Nestedset\NestedSet;
 
-
 class CreateCategoriesTable extends Migration
 {
     /**
@@ -22,7 +21,6 @@ class CreateCategoriesTable extends Migration
             $table->text('description')->nullable();
             $table->text('image')->nullable();
             $table->text('icon')->nullable();
-            $table->string('alias');
             $table->integer('order')->default(1);
             $table->timestamps();
         });
