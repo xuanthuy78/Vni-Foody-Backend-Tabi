@@ -20,7 +20,7 @@ class UploadValidator extends LaravelValidator
      */
     protected $rules = [
         ValidatorInterface::RULE_CREATE => [
-            'image' => 'required',
+            'image' => 'required|base64image|base64file|base64max:5000',
         ],
         ValidatorInterface::RULE_UPDATE => [
             'image' => 'required|image|max:5000',

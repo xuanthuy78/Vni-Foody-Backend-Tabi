@@ -4,8 +4,62 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "480df77e95adcdb509b493186b45db5b",
+    "content-hash": "d73fd9e1021039c464c564fbf3e6f7bb",
     "packages": [
+        {
+            "name": "crazybooot/base64-validation",
+            "version": "1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/crazybooot/base64-validation.git",
+                "reference": "c5d00aac597acf0e15e4c1238f476f5a72a4110d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/crazybooot/base64-validation/zipball/c5d00aac597acf0e15e4c1238f476f5a72a4110d",
+                "reference": "c5d00aac597acf0e15e4c1238f476f5a72a4110d",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^5.5|^6.0|^7.0",
+                "php": "^7.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Crazybooot\\Base64Validation\\Providers\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "App\\": "app/",
+                    "Crazybooot\\Base64Validation\\": "/src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "crazybooot",
+                    "email": "crazybooot@gmail.com"
+                }
+            ],
+            "description": "Laravel validators for base64 encoded files",
+            "keywords": [
+                "base64",
+                "download",
+                "encoded",
+                "files",
+                "images",
+                "laravel",
+                "validation"
+            ],
+            "time": "2020-03-04T14:52:34+00:00"
+        },
         {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "v0.1.1",
@@ -868,6 +922,70 @@
                 }
             ],
             "time": "2020-05-18T15:13:39+00:00"
+        },
+        {
+            "name": "league/fractal",
+            "version": "0.19.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/fractal.git",
+                "reference": "06dc15f6ba38f2dde2f919d3095d13b571190a7c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/fractal/zipball/06dc15f6ba38f2dde2f919d3095d13b571190a7c",
+                "reference": "06dc15f6ba38f2dde2f919d3095d13b571190a7c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "doctrine/orm": "^2.5",
+                "illuminate/contracts": "~5.0",
+                "mockery/mockery": "~0.9",
+                "pagerfanta/pagerfanta": "~1.0.0",
+                "phpunit/phpunit": "^4.8.35 || ^7.5",
+                "squizlabs/php_codesniffer": "~1.5|~2.0|~3.4",
+                "zendframework/zend-paginator": "~2.3"
+            },
+            "suggest": {
+                "illuminate/pagination": "The Illuminate Pagination component.",
+                "pagerfanta/pagerfanta": "Pagerfanta Paginator",
+                "zendframework/zend-paginator": "Zend Framework Paginator"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.13-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "League\\Fractal\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Phil Sturgeon",
+                    "email": "me@philsturgeon.uk",
+                    "homepage": "http://philsturgeon.uk/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Handle the output of complex data structures ready for API output.",
+            "homepage": "http://fractal.thephpleague.com/",
+            "keywords": [
+                "api",
+                "json",
+                "league",
+                "rest"
+            ],
+            "time": "2020-01-24T23:17:29+00:00"
         },
         {
             "name": "monolog/monolog",
