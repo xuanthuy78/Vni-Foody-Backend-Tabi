@@ -20,5 +20,6 @@ Route::group(['middleware' => 'api'], function () {
     Route::post('upload', 'FilesController@upload');
     Route::post('uploadsimple', 'FilesController@uploadSimple');
     Route::apiResource('product', 'ProductController');
+    Route::apiResource('brand', 'BrandController');
     Route::apiResource('slide', 'SlideController');
 });
