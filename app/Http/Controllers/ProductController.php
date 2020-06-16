@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Entities\Brand;
+use App\Entities\Category;
+use App\Entities\Product;
 use App\Entities\ProductImage;
 use App\Http\Controllers\Controller;
+use App\Repositories\CategoryRepository;
 use App\Repositories\ProductRepository;
 use App\Validators\ProductValidator;
 use Illuminate\Http\Request;
@@ -144,7 +148,41 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $attributes = $request->all();
+            $this->validator->with($attributes)->setId($id)->passesOrFail(ValidatorInterface::RULE_UPDATE);
+            $product = $this->repository->skipPresenter()->update($attributes, $id);
+            $dataRelationImage = [];
+            if (!empty($attributes['image'])) {
+                $product->images()->delete();
+                $arrImage = $attributes['image'];
+                if ($arrImage && is_array($arrImage)) {
+                    foreach ($arrImage as $image) {
+                        array_push($dataRelationImage, new ProductImage(['image' => $image]));
+                    }
+                    $product->images()->saveMany($dataRelationImage);
+                }
+            }
+
+            $response = [
+                'status' => 'success',
+                'messsage' => 'Chỉnh sửa sản phẩm thành công',
+            ];
+
+            if ($request->wantsJson()) {
+
+                return response()->json($response);
+            }
+
+        } catch (ValidatorException $e) {
+            if ($request->wantsJson()) {
+                return response()->json([
+                    'error' => true,
+                    'message' => $e->getMessageBag(),
+                ], 500);
+            }
+
+        }
     }
 
     /**
@@ -162,5 +200,36 @@ class ProductController extends Controller
                 'message' => 'Xóa sản phẩm thành công',
             ]);
         }
+    }
+
+    public function getByCategory($id)
+    {
+        $category = Category::where('id', $id)->firstOrFail();
+        $ids[] = $category;
+        //nếu click vào cha sẽ ra con luon
+        $categoryIds = app(CategoryRepository::class)->getAllLevelCategory($category->id);
+        $products = Product::whereIn('category_id', $categoryIds)->orderBy('id', 'desc')
+            ->paginate(10);
+        if (request()->wantsJson()) {
+            return response()->json([
+                'status' => 'success',
+                'data' => $products,
+            ]);
+        }
+
+    }
+
+    public function getByBrand($id)
+    {
+        $brand = Brand::where('id', $id)->firstOrFail();
+        $products = Product::where('brand_id', $brand->id)->orderBy('id', 'desc')
+            ->paginate(10);
+        if (request()->wantsJson()) {
+            return response()->json([
+                'status' => 'success',
+                'data' => $products,
+            ]);
+        }
+
     }
 }

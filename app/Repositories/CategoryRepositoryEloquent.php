@@ -23,28 +23,31 @@ class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepos
     {
         return Category::class;
     }
-
-    // public function presenter()
-    // {
-    //     return CategoryPresenter::class;
-    // }
-
-    // /**
-    //  * Specify Validator class name
-    //  *
-    //  * @return mixed
-    //  */
-    // public function validator()
-    // {
-    //     return CategoryValidator::class;
-    // }
-
     /**
      * Boot up the repository, pushing criteria
      */
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
+    }
+
+    public function getAllLevelCategory($categoryId)
+    {
+        $ids[] = $categoryId;
+        $category = $this->model->find($categoryId);
+        $children = $category->children;
+        if (count($children)) {
+            foreach ($children as $child) {
+                $ids[] = $child->id;
+                $nextChildren = $child->children;
+                if (count($nextChildren)) {
+                    foreach ($nextChildren as $nextChild) {
+                        $ids[] = $nextChild->id;
+                    }
+                }
+            }
+        }
+        return $ids;
     }
 
 }
