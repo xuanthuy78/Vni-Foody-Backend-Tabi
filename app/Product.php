@@ -42,22 +42,17 @@ class Product extends Model implements Transformable
         return $this->belongsTo(Brand::class, 'brand_id', 'id');
     }
 
-    public function properties()
-    {
-        return $this->hasMany(ProductProperty::class);
-    }
-
     public function images()
     {
         return $this->hasMany(ProductImage::class);
     }
 
-    // public function avatar()
-    // {
-    //     $image = $this->images()->first();
-    //     if ($image) {
-    //         return $image->image;
-    //     }
-    //     return null;
-    // }
+    public function avatar()
+    {
+        $image = $this->images()->first();
+        if ($image) {
+            return $image->image;
+        }
+        return null;
+    }
 }
