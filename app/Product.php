@@ -1,36 +1,40 @@
 <?php
 
-namespace App;
+namespace App\Entities;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
+/**
+ * Class Product.
+ *
+ * @package namespace App\Entities;
+ */
 class Product extends Model implements Transformable
 {
-    use TransformableTrait, SoftDeletes;
-
+    use TransformableTrait, Sluggable, SoftDeletes;
     protected $table = 'products';
-    public $timestamps = true;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['thumbnail', 'category_id', 'brand_id', 'name', 'price', 'quality', 'description', 'content', 'code', 'promotion_price', 'promotion_description', 'alias'];
+    protected $fillable = ['alias', 'content', 'description', 'category_id', 'name', 'price', 'promotion_price', 'code', 'thumbnail', 'params', 'attributes', 'promotion_description', 'brand_id'];
 
-    // public function sluggable()
-    // {
-    //     return [
-    //         'alias' => [
-    //             'source' => 'name',
-    //             'unique' => true,
-    //         ],
+    public function sluggable()
+    {
+        return [
+            'alias' => [
+                'source' => 'name',
+                'unique' => true,
+            ],
 
-    //     ];
-    // }
+        ];
+    }
 
     public function category()
     {
