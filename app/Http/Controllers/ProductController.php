@@ -117,13 +117,10 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = $this->repository->find($id);
-        $productImage = $product->images;
-        $dataProduct = [];
-        array_push($dataProduct, $product);
         if (request()->wantsJson()) {
             return response()->json([
                 'status' => 'success',
-                'data' => $dataProduct,
+                'data' => $product,
             ]);
         }
     }
