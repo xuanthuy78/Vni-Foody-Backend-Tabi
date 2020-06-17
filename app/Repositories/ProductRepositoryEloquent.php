@@ -2,9 +2,10 @@
 
 namespace App\Repositories;
 
-use App\Product;
+use App\Criteria\SearchNameProductCriteria;
+use App\Entities\Product;
+use App\Presenters\ProductPresenter;
 use App\Repositories\ProductRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
@@ -24,12 +25,18 @@ class ProductRepositoryEloquent extends BaseRepository implements ProductReposit
         return Product::class;
     }
 
+    public function presenter()
+    {
+        return ProductPresenter::class;
+    }
+
     /**
      * Boot up the repository, pushing criteria
      */
     public function boot()
     {
-        $this->pushCriteria(app(RequestCriteria::class));
+        $this->pushCriteria(SearchNameProductCriteria::class);
+        // $this->pushCriteria(app(RequestCriteria::class));
     }
 
 }
