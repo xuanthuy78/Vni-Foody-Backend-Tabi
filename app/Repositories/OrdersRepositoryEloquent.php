@@ -2,10 +2,10 @@
 
 namespace App\Repositories;
 
+use App\Criteria\SearchOrderCriteria;
 use App\Entities\Orders;
 use App\Presenters\OrdersPresenter;
 use App\Repositories\OrdersRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
@@ -35,7 +35,7 @@ class OrdersRepositoryEloquent extends BaseRepository implements OrdersRepositor
      */
     public function boot()
     {
-        $this->pushCriteria(app(RequestCriteria::class));
+        $this->pushCriteria(SearchOrderCriteria::class);
     }
 
 }
