@@ -28,4 +28,6 @@ Route::group(['middleware' => 'api'], function () {
     Route::apiResource('categories', 'CategoriesController');
     Route::get('product-category/{id}', 'ProductController@getByCategory');
     Route::get('product-brand/{id}', 'ProductController@getByBrand');
+    Route::apiResource('order', 'OrderController');
+    Route::post('order/updateStatus', 'OrderController@updateStatus');
 });
