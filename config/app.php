@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
         App\Providers\RepositoryServiceProvider::class,
+        Darryldecode\Cart\CartServiceProvider::class,
 
     ],
 
@@ -227,6 +228,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
 
     ],
 

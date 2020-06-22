@@ -30,4 +30,9 @@ Route::group(['middleware' => 'api'], function () {
     Route::get('product-brand/{id}', 'ProductController@getByBrand');
     Route::apiResource('order', 'OrderController');
     Route::post('order/updateStatus', 'OrderController@updateStatus');
+    Route::get('carts', 'CartController@cardList');
+    Route::get('carts/{id}/add', 'CartController@addCart');
+    Route::get('carts/{id}/remove', 'CartController@removeCart');
+    Route::post('carts/{id}/update', 'CartController@updateCart');
+    Route::post('order/create', 'CartController@create');
 });
