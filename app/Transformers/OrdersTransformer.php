@@ -27,10 +27,11 @@ class OrdersTransformer extends TransformerAbstract
             $arrPrice = explode('.', $detail->price);
             $tmp['price'] = reset($arrPrice);
             $tmp['qty'] = $detail->number;
-            $tmp['name'] = $detail->product->name;
-            $tmp['thumbnail'] = $detail->product->thumbnail;
+            $tmp['name'] = $detail->product ? $detail->product->name : null;
+            $tmp['thumbnail'] = $detail->product ? $detail->product->thumbnail : null;
             array_push($resultDetail, $tmp);
         }
+        array_shift($resultDetail);
         return [
             'id' => (int) $model->id,
             'user_id' => $model->user_id,

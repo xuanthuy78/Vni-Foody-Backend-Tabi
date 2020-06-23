@@ -28,6 +28,7 @@ class OrderRequest extends FormRequest
             'phone' => 'required',
             'email' => 'required|email',
             'gender' => 'required',
+            'address' => 'required',
         ];
     }
 

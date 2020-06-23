@@ -22,7 +22,6 @@ class CartController extends Controller
 
     public function cardList()
     {
-
         // $product = Product::find(1);
         // $image = $product->avatar();
         // $price = $product->promotion_price ? $product->promotion_price : $product->price;
@@ -94,25 +93,20 @@ class CartController extends Controller
 
     public function create(OrderRequest $request)
     {
-        Cart::add(array(
-            array(
-                'id' => 456,
-                'name' => 'Sample Item 1',
-                'price' => 67.99,
-                'quantity' => 4,
-                'attributes' => array(),
-            ),
-            array(
-                'id' => 568,
-                'name' => 'Sample Item 2',
-                'price' => 69.25,
-                'quantity' => 4,
-                'attributes' => array(
-                    'size' => 'L',
-                    'color' => 'blue',
-                ),
-            ),
-        ));
+        // Cart::add(array(
+        //     array(
+        //         'id' => 1,
+        //         'name' => 'Xà lách trộn kiểu Nga2',
+        //         'price' => 500000,
+        //         'quantity' => 2,
+        //     ),
+        //     array(
+        //         'id' => 2,
+        //         'name' => 'Xà lách trộn kiểu Nga3',
+        //         'price' => 12000,
+        //         'quantity' => 2,
+        //     ),
+        // ));
         $carts = Cart::getContent();
         if (!count($carts)) {
             if (\request()->wantsJson()) {
@@ -143,9 +137,11 @@ class CartController extends Controller
 
         } catch (\Exception $e) {
             DB::rollBack();
-            toastError('Đã xảy ra lỗi');
-            return redirect()->route('home');
+            if (\request()->wantsJson()) {
+                return [
+                    'message' => 'Đã xảy ra lỗi',
+                ];
+            }
         }
     }
-
 }
