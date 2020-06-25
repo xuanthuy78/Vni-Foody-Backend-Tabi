@@ -35,4 +35,7 @@ Route::group(['middleware' => 'api'], function () {
     Route::get('carts/{id}/remove', 'CartController@removeCart');
     Route::post('carts/{id}/update', 'CartController@updateCart');
     Route::post('order/create', 'CartController@create');
+    Route::post('login', 'UserController@login');
+    Route::post('signup', 'UserController@signup');
+
 });
