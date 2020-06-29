@@ -40,6 +40,7 @@ class ProductTransformer extends TransformerAbstract
             'alias' => $model->alias,
             'code' => $model->code,
             'image' => $model->images,
+            'comment' => $model->comments,
             'created_at' => $model->created_at,
             'updated_at' => $model->updated_at,
         ];

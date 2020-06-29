@@ -32,13 +32,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(\App\Repositories\OrdersRepository::class, \App\Repositories\OrdersRepositoryEloquent::class);
         $this->app->bind(\App\Repositories\OrderDetailRepository::class, \App\Repositories\OrderDetailRepositoryEloquent::class);
         $this->app->bind(\App\Repositories\UserRepository::class, \App\Repositories\UserRepositoryEloquent::class);
-        // $this->app->bind(\App\Repositories\ProductPropertyRepository::class, \App\Repositories\ProductPropertyRepositoryEloquent::class);
-        // $this->app->bind(\App\Repositories\AdviceCalendarRepository::class, \App\Repositories\AdviceCalendarRepositoryEloquent::class);
-        // $this->app->bind(\App\Repositories\ProductDeliveryCustomerRepository::class, \App\Repositories\ProductDeliveryCustomerRepositoryEloquent::class);
-        // $this->app->bind(\App\Repositories\SupportOnlineRepository::class, \App\Repositories\SupportOnlineRepositoryEloquent::class);
-        // $this->app->bind(\App\Repositories\PagesRepository::class, \App\Repositories\PagesRepositoryEloquent::class);
-        // $this->app->bind(\App\Repositories\ConfigsRepository::class, \App\Repositories\ConfigsRepositoryEloquent::class);
-        // $this->app->bind(\App\Repositories\AddressRepository::class, \App\Repositories\AddressRepositoryEloquent::class);
-        //:end-bindings:
+        $this->app->bind(\App\Repositories\CommentRepository::class, \App\Repositories\CommentRepositoryEloquent::class);
     }
 }

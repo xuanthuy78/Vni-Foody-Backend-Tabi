@@ -45,4 +45,5 @@ Route::group(['middleware' => 'api'], function () {
     Route::get('cart/{id}', 'UserController@detailCartByUser');
     Route::delete('cart/{id}', 'UserController@deleteCartByUser');
     Route::post('product/{id}/comment', 'UserController@comment');
+    Route::delete('comment/{id}', 'UserController@deleteComment');
 });

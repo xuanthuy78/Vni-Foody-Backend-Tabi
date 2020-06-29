@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Entities\Comment;
 use App\Entities\OrderDetail;
 use App\Entities\Orders;
 use App\Entities\Product;
@@ -209,16 +210,46 @@ class UserController extends Controller
 
     public function comment(Request $request, $id)
     {
-        $product = Product::find($id);
-        dd($product);
-        // $comment = new Comment;
-        // $comment->product_id = $id;
-        // $comment->user_id = Auth::id();
-        // $comment->content = $request->comment;
-        // $comment->save();
-        // $comment->name = Auth::user()->name;
-        // $comment->is_admin = Auth::user()->is_admin;
-        // return $comment;
+        if (Auth::check()) {
+            $product = Product::find($id);
+            $comment = new Comment;
+            $comment->product_id = $id;
+            $comment->user_id = Auth::id();
+            $comment->content = $request->comment;
+            $comment->save();
+            $comment->name = Auth::user()->name;
+            $comment->is_admin = Auth::user()->is_admin;
+            if (request()->wantsJson()) {
+                return response()->json([
+                    'status' => 'Thêm thành bình luận thành công',
+                ]);
+            }
+        } else {
+            if (\request()->wantsJson()) {
+                return [
+                    'status' => 'Vui lòng đăng nhập',
+                ];
+            }
+        }
+    }
+
+    public function deleteComment(Request $request, $id)
+    {
+        if (Auth::check()) {
+            $comment = Comment::findOrFail($id);
+            $comment->delete();
+            if (request()->wantsJson()) {
+                return response()->json([
+                    'status' => 'Xóa bình luận thành công',
+                ]);
+            }
+        } else {
+            if (\request()->wantsJson()) {
+                return [
+                    'status' => 'Vui lòng đăng nhập',
+                ];
+            }
+        }
     }
 
     private function guard()
