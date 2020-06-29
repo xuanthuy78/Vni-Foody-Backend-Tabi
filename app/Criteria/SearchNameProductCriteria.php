@@ -27,13 +27,15 @@ class SearchNameProductCriteria implements CriteriaInterface
             $keyword = request()->get('keyword');
             $model = $model->where('name', 'like', "%$keyword%");
         }
-        if (request()->has('category')) {
+        if (request()->has('category') && request()->get('category')) {
             $category = request()->get('category');
             $dataCategory = Category::where('name', 'like', "%$category%")->get();
+            $arrIdCategory = [];
             foreach ($dataCategory as $item) {
                 $id = $item->id;
-                $model = $model->where('category_id', 'like', "%$id%");
+                array_push($arrIdCategory, $id);
             }
+            $model = $model->whereIn('category_id', $arrIdCategory);
         }
         $model = $model->orderBy('id', 'DESC');
         return $model;
