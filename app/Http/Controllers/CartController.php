@@ -8,6 +8,7 @@ use App\Http\Requests\OrderRequest;
 use Cart;
 use DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -93,20 +94,20 @@ class CartController extends Controller
 
     public function create(OrderRequest $request)
     {
-        // Cart::add(array(
-        //     array(
-        //         'id' => 1,
-        //         'name' => 'Xà lách trộn kiểu Nga2',
-        //         'price' => 500000,
-        //         'quantity' => 2,
-        //     ),
-        //     array(
-        //         'id' => 2,
-        //         'name' => 'Xà lách trộn kiểu Nga3',
-        //         'price' => 12000,
-        //         'quantity' => 2,
-        //     ),
-        // ));
+        Cart::add(array(
+            array(
+                'id' => 1,
+                'name' => 'Xà lách trộn kiểu Nga2',
+                'price' => 500000,
+                'quantity' => 2,
+            ),
+            array(
+                'id' => 2,
+                'name' => 'Xà lách trộn kiểu Nga3',
+                'price' => 12000,
+                'quantity' => 2,
+            ),
+        ));
         $carts = Cart::getContent();
         if (!count($carts)) {
             if (\request()->wantsJson()) {
@@ -120,6 +121,7 @@ class CartController extends Controller
 
             $data = $request->all();
             $data['total'] = Cart::getTotal();
+            $data['user_id'] = Auth::id();
             $order = Order::create($data);
             foreach ($carts as $cart) {
                 $order->products()->attach($cart->id, [

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Entities\OrderDetail;
+use App\Entities\Orders;
+use App\Entities\Product;
 use App\Laravue\JsonResponse;
 use App\Repositories\UserRepository;
 use App\User;
@@ -9,6 +12,8 @@ use App\Validators\UserValidator;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Input;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 
@@ -46,7 +51,7 @@ class UserController extends Controller
             $user = Auth::user();
             return response()->json(new JsonResponse([$user]), Response::HTTP_OK)->header('Authorization', $token);
         }
-        return response()->json(new JsonResponse([], 'login_error'), Response::HTTP_UNAUTHORIZED);
+        return response()->json(new JsonResponse([], 'Mật khẩu không đúng'), Response::HTTP_UNAUTHORIZED);
     }
 
     public function signup(Request $request)
@@ -54,7 +59,7 @@ class UserController extends Controller
         $attributes = $request->all();
         try {
             $this->validator->with($attributes)->passesOrFail(ValidatorInterface::RULE_CREATE);
-            $attributes['password'] = bcrypt($attributes['password']);
+            $attributes['password'] = Hash::make($attributes['password']);
             $user = $this->repository->skipPresenter()->create($attributes);
             $response = [
                 'message' => 'Đã đăng ký thành công, xin mời đăng nhập !',
@@ -74,6 +79,146 @@ class UserController extends Controller
             }
 
         }
+    }
+
+    public function logout()
+    {
+        $this->guard()->logout();
+        return response()->json((new JsonResponse())->success([]), Response::HTTP_OK);
+    }
+
+    public function userProfile()
+    {
+        if (Auth::user()) {
+            $user = Auth::user();
+            if (\request()->wantsJson()) {
+                return [
+                    'status' => 'success',
+                    'data' => $user,
+                ];
+            }
+        } else {
+            if (\request()->wantsJson()) {
+                return response()->json([
+                    'error' => true,
+                    'message' => 'error',
+                ], 400);
+            }
+        }
+
+    }
+
+    public function userUpdate(Request $request, $id)
+    {
+        try {
+            $attributes = $request->all();
+            $this->validator->with($attributes)->setId($id)->passesOrFail(ValidatorInterface::RULE_UPDATE);
+            $user = $this->repository->skipPresenter()->update($attributes, $id);
+            $response = [
+                'status' => 'success',
+                'messsage' => 'Chỉnh sửa sản phẩm thành công',
+            ];
+
+            if ($request->wantsJson()) {
+
+                return response()->json($response);
+            }
+
+        } catch (ValidatorException $e) {
+            if ($request->wantsJson()) {
+                return response()->json([
+                    'error' => true,
+                    'message' => $e->getMessageBag(),
+                ], 500);
+            }
+
+        }
+    }
+
+    public function changePassword(Request $request, $id)
+    {
+        $user = User::find($id);
+
+        if (Hash::check(Input::get('oldpassword'), $user->password)) {
+            try {
+                $attributes = $request->all();
+                $this->validator->with($attributes)->setId($id)->passesOrFail(ValidatorInterface::RULE_UPDATE);
+                $attributes['password'] = Hash::make($attributes['newpassword']);
+                $user = $this->repository->skipPresenter()->update($attributes, $id);
+                if (\request()->wantsJson()) {
+                    return [
+                        'status' => 'Thay đổi mật khẩu thành công',
+                    ];
+                }
+            } catch (ValidatorException $e) {
+                if ($request->wantsJson()) {
+                    return response()->json([
+                        'error' => true,
+                        'message' => $e->getMessageBag(),
+                    ], 500);
+                }
+
+            }
+        } else {
+            if (\request()->wantsJson()) {
+                return [
+                    'status' => 'Vui lòng nhập đúng mật khẩu cũ',
+                ];
+            }
+        }
+    }
+
+    public function viewCartByUser()
+    {
+        if (Auth::user()) {
+            $id = Auth::user()->id;
+            $orders = Orders::where('user_id', $id)->paginate(10);
+            if (request()->wantsJson()) {
+                return response()->json([
+                    'status' => 'success',
+                    'data' => $orders,
+                ]);
+            }
+        }
+    }
+
+    public function detailCartByUser($id)
+    {
+        if (Auth::user()) {
+            $orders = OrderDetail::where('order_id', $id)->paginate(10);
+            if (request()->wantsJson()) {
+                return response()->json([
+                    'status' => 'success',
+                    'data' => $orders,
+                ]);
+            }
+        }
+    }
+
+    public function deleteCartByUser($id)
+    {
+        if (Auth::user()) {
+            Orders::destroy($id);
+            OrderDetail::destroy($id);
+            return response()->json([
+                'success' => true,
+                'message' => 'Xóa đơn hàng thành công',
+            ]);
+        }
+    }
+
+    public function comment(Request $request, $id)
+    {
+        $product = Product::find($id);
+        dd($product);
+        // $comment = new Comment;
+        // $comment->product_id = $id;
+        // $comment->user_id = Auth::id();
+        // $comment->content = $request->comment;
+        // $comment->save();
+        // $comment->name = Auth::user()->name;
+        // $comment->is_admin = Auth::user()->is_admin;
+        // return $comment;
     }
 
     private function guard()

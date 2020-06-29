@@ -24,7 +24,10 @@ class UserValidator extends LaravelValidator
             'password' => 'required|min:5|max:15',
             'cpassword' => 'required|same:password',
         ],
-        ValidatorInterface::RULE_UPDATE => [],
+        ValidatorInterface::RULE_UPDATE => [
+            'newpassword' => 'required|min:5|max:15',
+            'cnewpassword' => 'required|same:newpassword',
+        ],
     ];
     protected $messages = [
         'name.required' => 'Bạn chưa nhập tên',
@@ -36,5 +39,9 @@ class UserValidator extends LaravelValidator
         'password.max' => 'Password tối đa 15 ký tự',
         'cpassword.required' => 'Bạn chưa nhập lại password',
         'cpassword.same' => 'Password nhập lại chưa khớp',
+        'newpassword.min' => 'Password phải từ 5 ký tự',
+        'newpassword.max' => 'Password tối đa 15 ký tự',
+        'cnewpassword.required' => 'Bạn chưa nhập lại password',
+        'cnewpassword.same' => 'Password nhập lại chưa khớp',
     ];
 }
