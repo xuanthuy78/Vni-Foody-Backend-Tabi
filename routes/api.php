@@ -35,4 +35,15 @@ Route::group(['middleware' => 'api'], function () {
     Route::get('carts/{id}/remove', 'CartController@removeCart');
     Route::post('carts/{id}/update', 'CartController@updateCart');
     Route::post('order/create', 'CartController@create');
+    Route::post('login', 'UserController@login');
+    Route::post('signup', 'UserController@signup');
+    Route::post('logout', 'UserController@logout');
+    Route::get('user/{id}', 'UserController@userProfile');
+    Route::post('user/update/{id}', 'UserController@userUpdate');
+    Route::post('user/changePassword/{id}', 'UserController@changePassword');
+    Route::get('cart/user', 'UserController@viewCartByUser');
+    Route::get('cart/{id}', 'UserController@detailCartByUser');
+    Route::delete('cart/{id}', 'UserController@deleteCartByUser');
+    Route::post('product/{id}/comment', 'UserController@comment');
+    Route::delete('comment/{id}', 'UserController@deleteComment');
 });

@@ -38,6 +38,11 @@ class Product extends Model implements Transformable
         return $this->hasMany(ProductImage::class);
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'product_id', 'id');
+    }
+
     public function avatar()
     {
         $image = $this->images()->first();
