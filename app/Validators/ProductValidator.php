@@ -24,19 +24,21 @@ class ProductValidator extends LaravelValidator
             'code' => 'required',
             'thumbnail' => 'required',
             'price' => 'required|numeric',
-            'promotion_price' => 'numeric',
-            'image' => 'required'],
+        ],
         ValidatorInterface::RULE_UPDATE => [
             'name' => 'required|unique:products',
             'description' => 'required',
             'code' => 'required',
             'thumbnail' => 'required',
             'price' => 'required|numeric',
-            'promotion_price' => 'numeric',
-            'image' => 'required',
         ],
     ];
     protected $messages = [
+        'name.required' => 'Tên sản phẩm chưa được nhập',
         'name.unique' => 'Tên sản phẩm không được trùng',
+        'description.required' => 'Chi tiết sản phẩm chưa được nhập',
+        'code.required' => 'Mã sản phẩm chưa được nhập',
+        'thumbnail.required' => 'Ảnh chính chưa được thêm vào',
+        'price.required' => 'Giá chưa được nhập',
     ];
 }

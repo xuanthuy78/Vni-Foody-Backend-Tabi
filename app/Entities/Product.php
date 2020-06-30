@@ -21,7 +21,7 @@ class Product extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = ['content', 'description', 'category_id', 'name', 'price', 'promotion_price', 'code', 'thumbnail', 'params', 'attributes', 'promotion_description', 'brand_id'];
+    protected $fillable = ['alias', 'content', 'description', 'category_id', 'name', 'price', 'promotion_price', 'code', 'thumbnail', 'params', 'attributes', 'promotion_description', 'brand_id', 'quality'];
 
     public function category()
     {

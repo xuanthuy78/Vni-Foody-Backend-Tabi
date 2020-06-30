@@ -3,6 +3,7 @@
 namespace App\Transformers;
 
 use App\Entities\Product;
+use App\User;
 use League\Fractal\TransformerAbstract;
 
 /**
@@ -23,6 +24,17 @@ class ProductTransformer extends TransformerAbstract
     {
         $arrayPrice = explode('.', $model->price);
         $arrayPricePromotion = explode('.', $model->promotion_price);
+        $resultDetail = [];
+        foreach ($model->comments as $comment) {
+            $idUser = $comment->user_id;
+            $user = User::where('id', $idUser)->firstOrFail();
+            $tmp['id'] = $comment->id;
+            $tmp['user_id'] = $comment->user_id;
+            $tmp['avatar'] = $user->avatar ? $user->avatar : null;
+            $tmp['product_id'] = $comment->product_id;
+            $tmp['content'] = $comment->content;
+            array_push($resultDetail, $tmp);
+        }
         return [
             'id' => (int) $model->id,
             'name' => $model->name,
@@ -40,7 +52,7 @@ class ProductTransformer extends TransformerAbstract
             'alias' => $model->alias,
             'code' => $model->code,
             'image' => $model->images,
-            'comment' => $model->comments,
+            'comment' => $resultDetail,
             'created_at' => $model->created_at,
             'updated_at' => $model->updated_at,
         ];

@@ -123,11 +123,11 @@ fetch(url, {
                     <p>Example request:</p>
                 </blockquote>
                 <pre><code class="language-bash">curl -X GET \
-    -G "http://localhost/api/product" \
+    -G "http://localhost:8000/api/product?page=2&limit=10&keyword=Xà lách trộn kiểu Nga1&category=món" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
                 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/product"
+    "http://localhost:8000/api/product?page=2&limit=10&keyword=Xà lách trộn kiểu Nga1&category=món"
 );
 
 let headers = {
@@ -149,66 +149,88 @@ fetch(url, {
     "data": {
         "data": [
             {
-                "id": 120,
-                "name": "Xà lách trộn kiểu Nga120",
+                "id": 1,
+                "name": "Xà lách trộn kiểu Nga1",
                 "description": "Món salad Nga luôn tươi ngon và hấp dẫn những ai thưởng thức.",
-                "category_id": 11,
-                "category_name": "Tủ bếp truyền thống",
+                "category_id": 2,
+                "category_name": "Món khai vị",
                 "brand_name": "",
                 "brand_id": null,
-                "content": "&lt;h2&gt;This is content&lt;\/h2&gt;",
+                "content": "xà lách trộn kiểu Nga1",
                 "thumbnail": "xa-lach-gcf126-405.jpg",
-                "price": "12000000",
-                "promotion_price": "18000000",
+                "price": "32000000",
+                "promotion_price": "15000000",
                 "promotion_description": null,
                 "quality": 23,
-                "alias": "xa-lach-tron-kieu-nga120",
+                "alias": "xa-lach-tron-kieu-nga1",
                 "code": "XL-233",
                 "image": [
                     {
-                        "id": 87705,
-                        "product_id": 120,
+                        "id": 2,
+                        "product_id": 1,
                         "image": "xa-lach-gcf126-405.jpg",
                         "created_at": null,
                         "updated_at": null
                     },
                     {
-                        "id": 87946,
-                        "product_id": 120,
+                        "id": 5,
+                        "product_id": 1,
                         "image": "xa-lach-gcf126-405.jpg",
                         "created_at": null,
                         "updated_at": null
                     },
                     {
-                        "id": 88188,
-                        "product_id": 120,
+                        "id": 9,
+                        "product_id": 1,
                         "image": "xa-lach-gcf126-405.jpg",
                         "created_at": null,
                         "updated_at": null
                     },
                     {
-                        "id": 88431,
-                        "product_id": 120,
+                        "id": 14,
+                        "product_id": 1,
                         "image": "xa-lach-gcf126-405.jpg",
                         "created_at": null,
                         "updated_at": null
                     },
                     {
-                        "id": 88675,
-                        "product_id": 120,
+                        "id": 20,
+                        "product_id": 1,
                         "image": "xa-lach-gcf126-405.jpg",
                         "created_at": null,
                         "updated_at": null
                     },
                     {
-                        "id": 88920,
-                        "product_id": 120,
+                        "id": 27,
+                        "product_id": 1,
                         "image": "xa-lach-gcf126-405.jpg",
                         "created_at": null,
                         "updated_at": null
                     }
                 ],
-                "comment": [],
+                "comment": [
+                    {
+                        "id": 1,
+                        "user_id": 1,
+                        "avatar": "avatar.jpg",
+                        "product_id": 1,
+                        "content": "Bánh này ngon, có tiền thì nghĩ ngay đến nó"
+                    },
+                    {
+                        "id": 2,
+                        "user_id": 1,
+                        "avatar": "avatar.jpg",
+                        "product_id": 1,
+                        "content": "Cũng được"
+                    },
+                    {
+                        "id": 3,
+                        "user_id": 2,
+                        "avatar": null,
+                        "product_id": 1,
+                        "content": "Không được ngon lắm"
+                    }
+                ],
                 "created_at": null,
                 "updated_at": null
             }
@@ -231,7 +253,7 @@ fetch(url, {
                 <p><code>GET api/product</code></p>
                 <!-- END_dc538d69a8586a7a3c36d4393cee42e6 -->
                 <!-- START_2d62ba7cf16a7d6db447375e13e86c34 -->
-                <h2>Store a newly created resource in storage.</h2>
+                <h2>Created Product</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -254,11 +276,40 @@ fetch(url, {
 })
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
+                <blockquote>
+                    <p>Body</p>
+                </blockquote>
+                <pre><code class="language-json">
+                    {
+                        "name": "Xà lách trộn kiểu Nga30062020102",
+                        "description": "Món salad Nga luôn tươi ngon và hấp dẫn những ai thưởng thức.",
+                        "category_id": 2,
+                        "brand_id": 1,
+                        "content": "content",
+                        "thumbnail": "xa-lach-gcf126-405.jpg",
+                        "price": "32000",
+                        "promotion_price": null,
+                        "promotion_description": null,
+                        "alias": null,
+                        "quality": 23,
+                        "code": "XL-233",
+                        "image": ["anh.png", "anh321.png"]
+                    }
+                </code></pre>
+                <blockquote>
+                    <p>Example response (200):</p>
+                </blockquote>
+                <pre><code class="language-json">
+                    {
+                        "message": "Product created.",
+                        "status": "success"
+                    }
+                </code></pre>
                 <h3>HTTP Request</h3>
                 <p><code>POST api/product</code></p>
                 <!-- END_2d62ba7cf16a7d6db447375e13e86c34 -->
                 <!-- START_1fcbf5d495e6ada99ea017e9ae32b380 -->
-                <h2>Display the specified resource.</h2>
+                <h2>View Product</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -366,7 +417,7 @@ fetch(url, {
                 <p><code>GET api/product/{product}</code></p>
                 <!-- END_1fcbf5d495e6ada99ea017e9ae32b380 -->
                 <!-- START_682327ab9f9deab00b7c603486ad935a -->
-                <h2>Update the specified resource in storage.</h2>
+                <h2>Update Product</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -376,6 +427,7 @@ fetch(url, {
     -H "Accept: application/json"</code></pre>
                 <pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/product/1"
+                    
 );
 
 let headers = {
@@ -389,12 +441,41 @@ fetch(url, {
 })
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
+                <blockquote>
+                    <p>Body</p>
+                </blockquote>
+                <pre><code class="language-json">
+                    {
+                        "name": "Xà lách Nga30062020102",
+                        "description": "Món salad Nga luôn tươi ngon và hấp dẫn những ai thưởng thức.",
+                        "category_id": 2,
+                        "brand_id": 1,
+                        "content": "content",
+                        "thumbnail": "xa-lach-gcf126-405.jpg",
+                        "price": "32000",
+                        "promotion_price": null,
+                        "promotion_description": null,
+                        "alias": null,
+                        "quality": 23,
+                        "code": "XL-233",
+                        "image": ["anh.png", "anh321.png"]
+                    }
+                </code></pre>
+                <blockquote>
+                    <p>Example response (200):</p>
+                </blockquote>
+                <pre><code class="language-json">
+                    {
+                        "status": "success",
+                        "messsage": "Chỉnh sửa sản phẩm thành công"
+                    }
+                </code></pre>
                 <h3>HTTP Request</h3>
                 <p><code>PUT api/product/{product}</code></p>
                 <p><code>PATCH api/product/{product}</code></p>
                 <!-- END_682327ab9f9deab00b7c603486ad935a -->
                 <!-- START_587b06cc0dc038b2e049f3a1baa2593b -->
-                <h2>Remove the specified resource from storage.</h2>
+                <h2>Delete Product</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -417,11 +498,20 @@ fetch(url, {
 })
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
+                <blockquote>
+                    <p>Example response (200):</p>
+                </blockquote>
+                <pre><code class="language-json">
+                    {
+                        "status": "success",
+                        "message": "Xóa sản phẩm thành công"
+                    }
+                </code></pre>
                 <h3>HTTP Request</h3>
                 <p><code>DELETE api/product/{product}</code></p>
                 <!-- END_587b06cc0dc038b2e049f3a1baa2593b -->
                 <!-- START_ec5d69c57dff08a10fad5f9cf208ad9f -->
-                <h2>Display a listing of the resource.</h2>
+                <h2>List brand</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
