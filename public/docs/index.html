@@ -511,16 +511,16 @@ fetch(url, {
                 <p><code>DELETE api/product/{product}</code></p>
                 <!-- END_587b06cc0dc038b2e049f3a1baa2593b -->
                 <!-- START_ec5d69c57dff08a10fad5f9cf208ad9f -->
-                <h2>List brand</h2>
+                <h2>List Brand</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
                 <pre><code class="language-bash">curl -X GET \
-    -G "http://localhost/api/brand" \
+    -G "http://localhost:8000/api/brand?limit=2&page=2" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
                 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/brand"
+    "http://localhost:8000/api/brand?limit=2&page=2"
 );
 
 let headers = {
@@ -539,27 +539,9 @@ fetch(url, {
                 </blockquote>
                 <pre><code class="language-json">{
     "status": "success",
-    "data": {
-        "current_page": 1,
+    "data":{
+        "current_page": 2,
         "data": [
-            {
-                "id": 1,
-                "name": "KAFF",
-                "alias": "kaff",
-                "description": "description",
-                "image": "kfc-192020.png",
-                "created_at": null,
-                "updated_at": null
-            },
-            {
-                "id": 2,
-                "name": "BOSCH",
-                "alias": "bosch",
-                "description": "description",
-                "image": "kfc-192020.png",
-                "created_at": null,
-                "updated_at": null
-            },
             {
                 "id": 3,
                 "name": "GIOVANI",
@@ -577,89 +559,17 @@ fetch(url, {
                 "image": "kfc-192020.png",
                 "created_at": null,
                 "updated_at": null
-            },
-            {
-                "id": 5,
-                "name": "Sika",
-                "alias": "sika",
-                "description": "description",
-                "image": "kfc-192020.png",
-                "created_at": null,
-                "updated_at": null
-            },
-            {
-                "id": 6,
-                "name": "Pramie",
-                "alias": "pramie",
-                "description": "description",
-                "image": "kfc-192020.png",
-                "created_at": null,
-                "updated_at": null
-            },
-            {
-                "id": 7,
-                "name": "CHEFS",
-                "alias": "chefs",
-                "description": "description",
-                "image": "kfc-192020.png",
-                "created_at": null,
-                "updated_at": null
-            },
-            {
-                "id": 8,
-                "name": "CATA",
-                "alias": "cata",
-                "description": "description",
-                "image": "kfc-192020.png",
-                "created_at": null,
-                "updated_at": null
-            },
-            {
-                "id": 9,
-                "name": "MUNCHEN",
-                "alias": "munchen",
-                "description": "description",
-                "image": "kfc-192020.png",
-                "created_at": null,
-                "updated_at": null
-            },
-            {
-                "id": 10,
-                "name": "FAGOR",
-                "alias": "fagor",
-                "description": "description",
-                "image": "kfc-192020.png",
-                "created_at": null,
-                "updated_at": null
-            },
-            {
-                "id": 11,
-                "name": "FASTER",
-                "alias": "faster",
-                "description": "description",
-                "image": "kfc-192020.png",
-                "created_at": null,
-                "updated_at": null
-            },
-            {
-                "id": 12,
-                "name": "FANDY",
-                "alias": "faster",
-                "description": "description",
-                "image": "kfc-192020.png",
-                "created_at": null,
-                "updated_at": null
             }
         ],
-        "first_page_url": "http:\/\/localhost\/api\/brand?page=1",
-        "from": 1,
-        "last_page": 1,
-        "last_page_url": "http:\/\/localhost\/api\/brand?page=1",
-        "next_page_url": null,
-        "path": "http:\/\/localhost\/api\/brand",
-        "per_page": 15,
-        "prev_page_url": null,
-        "to": 12,
+        "first_page_url": "http://localhost:8000/api/brand?limit=2&page=1",
+        "from": 3,
+        "last_page": 6,
+        "last_page_url": "http://localhost:8000/api/brand?limit=2&page=6",
+        "next_page_url": "http://localhost:8000/api/brand?limit=2&page=3",
+        "path": "http://localhost:8000/api/brand",
+        "per_page": "2",
+        "prev_page_url": "http://localhost:8000/api/brand?limit=2&page=1",
+        "to": 4,
         "total": 12
     }
 }</code></pre>
@@ -667,7 +577,7 @@ fetch(url, {
                 <p><code>GET api/brand</code></p>
                 <!-- END_ec5d69c57dff08a10fad5f9cf208ad9f -->
                 <!-- START_3910324459f124f3ea9c178d9c278861 -->
-                <h2>Store a newly created resource in storage.</h2>
+                <h2>Created Brand</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -690,11 +600,31 @@ fetch(url, {
 })
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
+                <blockquote>
+                    <p>Body</p>
+                </blockquote>
+                <pre><code class="language-json">
+                    {
+                        "name": "Lotteria",
+                        "alias": null,
+                        "description": "description",
+                        "image": "kfc-192020.png"
+                    }
+                </code></pre>
+                <blockquote>
+                    <p>Example response (200):</p>
+                </blockquote>
+                <pre><code class="language-json">
+                    {
+                        "status": "success",
+                        "message": "Thêm thành công "
+                    }
+                </code></pre>
                 <h3>HTTP Request</h3>
                 <p><code>POST api/brand</code></p>
                 <!-- END_3910324459f124f3ea9c178d9c278861 -->
                 <!-- START_907ecccfb795fb1a76e52450b3d2dd1f -->
-                <h2>Display the specified resource.</h2>
+                <h2>View Brand</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -736,7 +666,7 @@ fetch(url, {
                 <p><code>GET api/brand/{brand}</code></p>
                 <!-- END_907ecccfb795fb1a76e52450b3d2dd1f -->
                 <!-- START_74d705ff5986d604dca81e7cb47895df -->
-                <h2>Update the specified resource in storage.</h2>
+                <h2>Update Brand</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -759,12 +689,32 @@ fetch(url, {
 })
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
+                <blockquote>
+                    <p>Body</p>
+                </blockquote>
+                <pre><code class="language-json">
+                {
+                        "name": "Lotteria store",
+                        "alias": null,
+                        "description": "description",
+                        "image": "kfc-192020.png"
+                    }
+                </code></pre>
+                <blockquote>
+                    <p>Example response (200):</p>
+                </blockquote>
+                <pre><code class="language-json">
+                    {
+                        "status": "success",
+                        "message": "Chỉnh sửa thành công"
+                    }
+                </code></pre>
                 <h3>HTTP Request</h3>
                 <p><code>PUT api/brand/{brand}</code></p>
                 <p><code>PATCH api/brand/{brand}</code></p>
                 <!-- END_74d705ff5986d604dca81e7cb47895df -->
                 <!-- START_38ebeb9ea1755dadb881b7471e4a1211 -->
-                <h2>Remove the specified resource from storage.</h2>
+                <h2>Delete Brand</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -787,11 +737,20 @@ fetch(url, {
 })
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
+                <blockquote>
+                    <p>Example response (200):</p>
+                </blockquote>
+                <pre><code class="language-json">
+                    {
+                        "message": "Xóa thành công",
+                        "status": "success"
+                    }
+                </code></pre>
                 <h3>HTTP Request</h3>
                 <p><code>DELETE api/brand/{brand}</code></p>
                 <!-- END_38ebeb9ea1755dadb881b7471e4a1211 -->
                 <!-- START_6a8e50c7a5d7c12bb4838234a16aba2a -->
-                <h2>Display a listing of the resource.</h2>
+                <h2>List Slide</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -855,7 +814,7 @@ fetch(url, {
                 <p><code>GET api/slide</code></p>
                 <!-- END_6a8e50c7a5d7c12bb4838234a16aba2a -->
                 <!-- START_ee47a75964cef1d7beee7848ba195843 -->
-                <h2>Store a newly created resource in storage.</h2>
+                <h2>Created Slide</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -878,11 +837,30 @@ fetch(url, {
 })
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
+                <blockquote>
+                    <p>Body</p>
+                </blockquote>
+                <pre><code class="language-json">
+                {
+                        "name": "slide 3",
+                        "image": "slider-3.png",
+                        "order": 3
+                    }
+                </code></pre>
+                <blockquote>
+                    <p>Example response (200):</p>
+                </blockquote>
+                <pre><code class="language-json">
+                    {
+                        "status": "success",
+                        "message": "Thêm thành công "
+                    }
+                </code></pre>
                 <h3>HTTP Request</h3>
                 <p><code>POST api/slide</code></p>
                 <!-- END_ee47a75964cef1d7beee7848ba195843 -->
                 <!-- START_e77e06b32ef90d5d038f6fd6f0ec4e1e -->
-                <h2>Display the specified resource.</h2>
+                <h2>View Slide</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -923,7 +901,7 @@ fetch(url, {
                 <p><code>GET api/slide/{slide}</code></p>
                 <!-- END_e77e06b32ef90d5d038f6fd6f0ec4e1e -->
                 <!-- START_e64f63a60c938cd2258e0d9c9223699e -->
-                <h2>Update the specified resource in storage.</h2>
+                <h2>Update Slide</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -946,12 +924,31 @@ fetch(url, {
 })
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
+                <blockquote>
+                    <p>Body</p>
+                </blockquote>
+                <pre><code class="language-json">
+                    {
+                        "name": "slide 13",
+                        "image": "slider-3.png",
+                        "order": 3
+                    }
+                </code></pre>
+                <blockquote>
+                    <p>Example response (200):</p>
+                </blockquote>
+                <pre><code class="language-json">
+                    {
+                        "status": "success",
+                        "message": "Chỉnh sửa thành công"
+                    }
+                </code></pre>
                 <h3>HTTP Request</h3>
                 <p><code>PUT api/slide/{slide}</code></p>
                 <p><code>PATCH api/slide/{slide}</code></p>
                 <!-- END_e64f63a60c938cd2258e0d9c9223699e -->
                 <!-- START_43e8c282ba77a942d86edb301daecfc9 -->
-                <h2>Remove the specified resource from storage.</h2>
+                <h2>Delete Slide</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -978,7 +975,7 @@ fetch(url, {
                 <p><code>DELETE api/slide/{slide}</code></p>
                 <!-- END_43e8c282ba77a942d86edb301daecfc9 -->
                 <!-- START_130c2b5344f6d7c722fe29a7bb60cf33 -->
-                <h2>api/articles/categories</h2>
+                <h2>List category for articles</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
