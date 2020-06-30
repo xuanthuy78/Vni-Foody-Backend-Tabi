@@ -37,6 +37,10 @@ class SearchNameProductCriteria implements CriteriaInterface
             }
             $model = $model->whereIn('category_id', $arrIdCategory);
         }
+        if (request()->has('category_id')) {
+            $category_id = request()->get('category_id');
+            $model = $model->where('category_id', $category_id);
+        }
         $model = $model->orderBy('id', 'DESC');
         return $model;
     }

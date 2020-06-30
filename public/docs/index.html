@@ -123,11 +123,11 @@ fetch(url, {
                     <p>Example request:</p>
                 </blockquote>
                 <pre><code class="language-bash">curl -X GET \
-    -G "http://localhost:8000/api/product?page=2&limit=10&keyword=Xà lách trộn kiểu Nga1&category=món" \
+    -G "http://localhost:8000/api/product?page=2&limit=10&keyword=Xà&category_id= lách trộn kiểu Nga1&category=món" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
                 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/product?page=2&limit=10&keyword=Xà lách trộn kiểu Nga1&category=món"
+    "http://localhost:8000/api/product?page=2&limit=10&keyword=Xà&category_id= lách trộn kiểu Nga1&category=món"
 );
 
 let headers = {
