@@ -31,4 +31,10 @@ class ArticleValidator extends LaravelValidator
             'article_category_id' => 'required',
         ],
     ];
+    protected $messages = [
+        'title.required' => 'Tiêu đề chưa được nhập',
+        'image.required' => 'Ảnh chưa được cập nhập',
+        'content.required' => 'Nội dung chưa được cập nhập',
+        'article_category_id.required' => 'Thẻ loại tin tức chưa được chọn',
+    ];
 }

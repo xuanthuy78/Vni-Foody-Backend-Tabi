@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Entities\OrderDetail;
 use App\Repositories\OrdersRepository;
 use Illuminate\Http\Request;
 
@@ -134,6 +135,10 @@ class OrderController extends Controller
     public function destroy($id)
     {
         $this->repository->delete($id);
+        $orderDetail = OrderDetail::where('order_id', $id)->get();
+        foreach ($orderDetail as $item) {
+            OrderDetail::destroy($item->id);
+        }
         if (request()->wantsJson()) {
             return response()->json([
                 'status' => 'success',

@@ -41,7 +41,7 @@ class ArticleController extends Controller
     public function index()
     {
         $limit = \request()->get('limit');
-        $articles = $this->repository->paginate($limit);
+        $articles = $this->repository->orderBy('id', 'DESC')->paginate($limit);
         if (\request()->wantsJson()) {
             return [
                 'status' => 'success',

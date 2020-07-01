@@ -31,7 +31,7 @@ class OrdersTransformer extends TransformerAbstract
             $tmp['thumbnail'] = $detail->product ? $detail->product->thumbnail : null;
             array_push($resultDetail, $tmp);
         }
-        array_shift($resultDetail);
+        // array_shift($resultDetail);
         return [
             'id' => (int) $model->id,
             'user_id' => $model->user_id,

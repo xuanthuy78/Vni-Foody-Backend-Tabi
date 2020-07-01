@@ -38,7 +38,7 @@ Route::group(['middleware' => 'api'], function () {
     Route::post('login', 'UserController@login');
     Route::post('signup', 'UserController@signup');
     Route::post('logout', 'UserController@logout');
-    Route::get('user/{id}', 'UserController@userProfile');
+    Route::get('user', 'UserController@userProfile');
     Route::post('user/update/{id}', 'UserController@userUpdate');
     Route::post('user/changePassword/{id}', 'UserController@changePassword');
     Route::get('cart/user', 'UserController@viewCartByUser');

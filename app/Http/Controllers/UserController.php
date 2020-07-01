@@ -85,7 +85,11 @@ class UserController extends Controller
     public function logout()
     {
         $this->guard()->logout();
-        return response()->json((new JsonResponse())->success([]), Response::HTTP_OK);
+        if (\request()->wantsJson()) {
+            return [
+                'status' => 'success',
+            ];
+        }
     }
 
     public function userProfile()
@@ -102,7 +106,7 @@ class UserController extends Controller
             if (\request()->wantsJson()) {
                 return response()->json([
                     'error' => true,
-                    'message' => 'error',
+                    'message' => 'vui lòng đăng nhập',
                 ], 400);
             }
         }
@@ -179,6 +183,12 @@ class UserController extends Controller
                     'status' => 'success',
                     'data' => $orders,
                 ]);
+            }
+        } else {
+            if (\request()->wantsJson()) {
+                return [
+                    'status' => 'Vui lòng đăng nhập',
+                ];
             }
         }
     }

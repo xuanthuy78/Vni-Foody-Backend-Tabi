@@ -25,8 +25,8 @@ class UserValidator extends LaravelValidator
             'cpassword' => 'required|same:password',
         ],
         ValidatorInterface::RULE_UPDATE => [
-            'newpassword' => 'required|min:5|max:15',
-            'cnewpassword' => 'required|same:newpassword',
+            'newpassword' => 'min:5|max:15',
+            'cnewpassword' => 'same:newpassword',
         ],
     ];
     protected $messages = [

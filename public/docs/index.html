@@ -64,7 +64,7 @@
                 <!-- END_INFO -->
                 <h1>general</h1>
                 <!-- START_6e7e2bdf41dacf38a5c6768ef817e8b6 -->
-                <h2>api/upload</h2>
+                <h2>Upload Image</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -77,8 +77,7 @@
 );
 
 let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
+    "Content-Type": "multipart/form-data",
 };
 
 fetch(url, {
@@ -87,6 +86,23 @@ fetch(url, {
 })
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
+                <blockquote>
+                    <p>Boby</p>
+                </blockquote>
+                <pre><code class="language-json">
+                    {
+                        "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAwwAAAA1CAIAAABjgPvUAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAA+ZSURBVHja7J19UFTVG8fPFXZXl8hkE6h2MCEJBYF0kpEJRkcRehFjhEmbIMt01oAgJ8F4aSAGGaeUJpmUMSRAYnLCqQDLiTEkmUHUmBADQhwTfAGkGhhY3nb398f5/Xb4sbztcve+7ffz1z0Le899nnvPud895zzPYQwGAzEHvV7f3t7+7LPPEmBjLFiwwPgMwBsAAACk/+Iz9wuxsbFeXl7nz5+H7yQpg2YA/gEAAACRNC3Hjh07ceIEISQzM9OCyqKiouiBvb09XC9AJQTnAAAAAEaYuU+33b17d8WKFVqt1tvb+8aNG7dv3162bJlZldnb24+PjxNCZDLZ2NgYvG89GcT6OelzwjAMwXQbAAAAG3mfzv1fc3JytFptSkpKc3PzW2+9dfHiRXMrk8lk/5VmDAPXW0MbYUAIAAAA4FokDQ0NlZSU+Pr60om2bdu21dXVmVuZcZbNzs5Op9PB+8JH/z8GBweNRbgFACBwjh8/3tHRAT8AjkRSdXV1f39/amoqFTo+Pj5NTU1m1TQ+Ps4wTGlpaVJS0tjYmJubG7zPFmNjY3Z2dvNXQqYayDg65eDgYCyKzkBbu6EAoEuMjY1taWmBK8A8mesC6gsXLixZsuTVV1+lRZVK1dvba1ZNjo6Ow8PDb7zxBi0+ePAA3ucMU+kzQxEAACRAfX39K6+8Aj+A+TDXt2NdXV1oaKhcLqdFhULx8OFDs2oaGRmZWHR2dob3WfzZpDdhkgwSdRQbNRA3GgAwd4qKioaHh+EHwIVIunv37saNG43Fnp4ec19adJ4uLCwsLS3Nw8Ojs7NTwm7lZToc8fwSU73wAwAWtyCDwdDV1ZWeng5vAC5EUm9vb0BAgLF4+fJllUplVk3d3d2EkLNnz2ZlZcnlcgmnSpLedLherx8dHV2wYAEWbgMARMSnn3765Zdfiu4NItUliVhtSQghFy5cEMU5pWc4Mw9wx2E4DIfhMByG27jhk8jJySGGuaFSqegApsFgaGhoIIQcOHDAYCbu7u46na6pqUmhUKSnpxskCo2WV6vVWq2WmxrpMM+sSmj+VZj1FUIIuwYK/9azZbIo7GXx/toU8Bs3XSLDMF1dXQaDobi42MnJ6fLly2K5ufQNIslnWMimLVmyJCcnhx5MFElznW57+umn6SqiwcHB6OhoQkhgYKBZiiwvL+/BgwcuLi6+vr4jIyNZWVnSTpXEy3S4fkYw9g4AsBEYhnnqqacIIdHR0aWlpREREX19fXALMJe5iiR/f/+6ujqdTvf222+3tbUpFIqQkBCzaoqPjx8aGpoYEyf5nUk4mw6XyWQ6nU7CMogaiOYKALCAsLCwyMjIlJQUuAJYSyQFBQUVFBTExsaeOXOGELJlyxaaXdACXFxcCCGff/65tLe5dXd39/b21mg0VVVV1q5L8qvhsNwPADAfUlNTT58+ff/+fbgCWEsk1dTU5Ofn0+KBAwfMram6upoQcvXqVRobr9FopCqSZDIZwzC1tbXNzc2FhYUxMTF0FRcAAABecHZ2DgoKqqioEMUbRKo5XMRo2pxkilarfeedd4zF4ODgoKAgc2vatGkTIWTFihV0SEDaAwMTp8OXLl0aERHR1NRkbtIEAAAAbLFu3bq2tjb4AfAMYiZhOAyH4TAchsNwGC46wycxewoAnU732muvTfxOYWHhfOIGx8fHDQZDYmKitKNPJ8Vvd3d3K5XKe/fucVajEKogSAGAFACAQ7998cUXN2/ehIena0GZmZlHjhwR/s0VfvO32ExrmPbxxx9TcRIXF0c/uXPnDncpADIyMr755puJn2zfvt1iUWYwGOgsW25urk2NroloOhwA7sHCfFZ8iH3vZ6ajo2PNmjXwg8Q4fPgwPTh+/Dgh5P79++Hh4SzGes8kkn744YesrCxjMSUlxdvb+9atW7grFmDV6XDJR8jbWgoApDwAllFfXw8nTNeCWltb169fD+dIjFWrVtEDg8Hw66+/BgcH+/v7s7g8fNoT9fb27tq1y1jMy8vLzs728PDgft9Wy9Dr9d9//31ISMjixYtlMtnGjRv//PNPHq/HyclJXD/EJzkwJCSEjrJipAH2WsNeJDudvw8NBgNf+94Lrb81bUGdnZ2rV69WKBR4VCRGZWVlQkLCpk2bXn/99c7OThcXl5dffpnF808b3ZaUlPTPP//Q45MnT9LoNnd3d1GMJOn1eo1Gc/LkSeMnNTU127Ztu3HjBl/xh/39/TTeTSwSc5IDL168SD+XamwqABKAJvr/5JNPbLy/NaW8vHzfvn14QqSHs7PzZ599Ro8HBgb27t27ZcsWFs8/9RPc3t5eVFREj9PS0qhC0ul0MplMFCNJp06dmthiKa2trQMDA3xdkrimw6d0IH0E0SYBEDLc73svwP7WlKGhobVr1+LxkDY///xzQEDAo48+KuirRMwkDJ8/NPWoDRpucSJ7sRsuCtDGYTgMt6l+Y9oUAM8//zwhRKFQ3Lp1y2AwjIyMrF69espTbNiw4e+//xZggKIpWVlZfEWf3rlzZ/fu3WydX6fT7dmzx9RAnU7HVhVTLogx14HE0jBRDgwUVGSsSO0lkk7xYL1wemKdFAB87XvPe38rqBZEkAKAP9N0Op2rq2tra6tlX58uBcDUptLRqp07d9IijawjhCxatMh04dvmzZuF1pubtpaoqKjR0VG+RFJubu7Vq1fZOv+UE2GEkH///ZetKl544YX5O9DihjSrgcnJyQ4ODsnJydLoO0Rqr4RFEhUcFRUV4hJJE334448/Pvnkkw8fPpR8f8tNl8iXSJJY27dqS79y5YqHh4fFXzdPJNE/V1VV0WJgYCAhJDExcXBwMDw8vKioqK2t7dChQ46OjvQ/v/76a6HdwpdeekkmkykUCrVanZGRQZNY8iWSsrOzWTy/l5eXaXegUqlYlKqdnZ2EEOpAHx+fY8eOWeBAixvSrAYqlUo6MyUNkSRSe4l0k0lSkZSamipqv7333nt79+6VfH/LTZfIl0iSWNu3qkjKyMhISEhgXSRNvXB74cKFZEL6gd9++23Hjh25ublKpdLf37+lpcXT0/PDDz+8du2aq6srIaS4uFhoU4lVVVWjo6PDw8PNzc19fX1WDaieFP66efPmSf+QkpLCYnXt7e2mHyYmJrIYSOLm5kYf6OHh4evXr8fFxXEZkT6rgbGxsUql8t1335XGShdbs9cUoaU84Decni0fcrnvPZf9LS9dolWZ4Q0i9rY/68uR3YeQ3eD//zKlpFq2bBkhZHh4mBblcvm1a9focXl5+Ysvvmj8z9LSUkKIq6urkHXum2++ab1hZ+6nw1mZC5sBhmH4/bVhbQOF9gNLpPZKeLptcHCQ3ogPPvhApNNtlNDQ0Pz8fCn1twJvQRbcXDEuSZyjmVya1t3d/dhjjxlFC5vTbVgVL8YQA4ZhrFepuSe3xt0JCAiwzQCQ5cuX26bhovjRj1gnGA7DbYpp1ySVlZURQs6ePUuLKSkpjY2NRm34yCOP9PT00OLNmzcJIWvWrBGyzm1ubg4PD5fSdDhbgz1Tnpn3kSTxYlMmS34kyd3d3dvb287OrrKyUqQjSbm5ufv375dSfyu9RiGcBVWsmyku08xbkxQZGbly5coTJ07QYkJCQn5+vvEHn6+v7++//06L586dI4Ts3LlTyGJQrVY3NjZKaTrcSpmv6TmxQQSwcWQyGcMwtbW1zc3NhYWFMTExDQ0NYjSEl0T/Vu1vpYfYF1RJ3rSpr9Xe3r6goKCmpoZmbnV2dtZoNFlZWV1dXYQQf39/KpJaW1szMjKee+65uLg4IRvJMExvb6+VTm66Y2JUVFRycrK1jWJdJ0EhATCx06DyIjo6urS0NCIioq+vT3RW8JLo36r9rfTg6w0C0+Ylkqh5RUVF8fHxR48e1ev1fn5+6enparWaEOLn59fY2FhSUhIUFOTj41NdXU2j4QRLW1vb4sWLrXTysrIyY/grjZYvKyuTyWQc2EV10vylkvEkUEiAF6bcs1041xMWFhYZGclujCo3PuRl33ur9rfSg8c3CEybC/Yz/G3Hjh0uLi67du0qLi7WaDQbNmxQq9UKhUKlUpWWlp47dy4pKen9998X/r7KZ86csd5CYLVaXVVVxZdpVNZYLHGMAgvyCPDI2NjYwoULhaOTTK8nNTV1+fLlGRkZTzzxhFh8yNe+91btb6XHdG8QCfxwdXNzw5tlChAOwMs5mf+Hlf/EHYfhnF2kKJYp7N+/H3cchnN5TrZ6aS4Nn+7lItK92+wN0+y8MzOrVq06ffr0dLPdlp1zZsw6J43PIoT09/cHBwcrlcpLly5x0AvzbrjRxrm0KxY1Pu+G8wUMZ3EURDiGTzmy9dFHHw0ODgr2jpte86FDh1icIpzhIi3ub9HGLfgJwdnYjDUuUhR3fLJdln3Nz8+vqalJ4LZduXIlICDg9u3bX331lQQiBeaCfgKW/QMA3DyonOXhZQsnJydx+ZDjRVQ22N9y3LEbtchE+FQPJlciyZeLvcUiyZgFQJh4enq2t7fb29v/9NNPnp6ettmu0LkAYT6ZGo1m4qaktbW1xGqJLdiCl3B6sfgQ/S3HXbrxLs96uy1+EczxQZL8i2Z2L2i12q1btyqVyrCwsHv37olFJNEMDQUFBZs2bULrAkA4nDp1aspt2wcGBoR82byE04vFh+hvuRdMk5hB61jGPOu1IZF09OjRyspKrVZ7/vz5+Ph4+qGXl9f169cFbtvBgwdjYmLQnAAQFEeOHDH9UKVSOTo6CuQKhRNOLyIfor8VmmyaAYu/a4OOnV0klZSUGI9/+eUXeuDi4tLf3y9kw5555pnMzEy0HACEhvDz8I6NjU3ax56vcHqx+BD9ragVFRwyL5H0119/mX44MDCwaNEiIRu2Z88euVyOGwyA0BBjHt7y8vJ9+/bBh+hvAUTSZNzc3IzHoaGh9OCPP/4Q+HblwhkYBwBMRDh5eJlpkMvler3eWMzJyRkaGlq7di18iP4W2BrMrHkLDh8+fPDgQS8vL5VK9e2337q6uur1+q1bt65fvz4tLU2gVjFMb2/v448/jhsMAJgVvV5fUVGRl5fX0NAwNDQUGBh46dIlQe2UIui3CPpbYMsiaXR0dPv27T09PTk5OevWrevo6MjOzm5paamvr3dwcBBsoxVj0ioAAC8KaVI4PUWn0yHfD/pbYOPM3gXI5fLvvvtu9+7dycnJS5cuDQsLc3V1ra2tFaxCAgCAuSPSlAQAAC5+A+AXAADAllm5cmVra+ukD1UqVU9PD0aSALBx0AUAAGwa4ackAABAJAEAAA+IMSUBAAAiCQAArI7QwukBAMLhPwMAMw7OU/Tp51UAAAAASUVORK5CYII=",
+                    }
+                </code></pre>
+                <blockquote>
+                    <p>Example response (200):</p>
+                </blockquote>
+                <pre><code class="language-json">
+                    {
+                        "status": "success",
+                        "url": "img2020070108100600926800.png"
+                    }
+                </code></pre>
                 <h3>HTTP Request</h3>
                 <p><code>POST api/upload</code></p>
                 <!-- END_6e7e2bdf41dacf38a5c6768ef817e8b6 -->
@@ -1055,16 +1071,16 @@ fetch(url, {
                 <p><code>GET api/articles/categories</code></p>
                 <!-- END_130c2b5344f6d7c722fe29a7bb60cf33 -->
                 <!-- START_0d4cb2104f73e3ee9cf74a52a015de76 -->
-                <h2>Display a listing of the resource.</h2>
+                <h2>List Artices</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
                 <pre><code class="language-bash">curl -X GET \
-    -G "http://localhost/api/articles" \
+    -G "http://localhost:8000/api/articles?limit=5&page=2" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
                 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/articles"
+    "http://localhost:8000/api/articles?limit=5&page=2"
 );
 
 let headers = {
@@ -1084,176 +1100,45 @@ fetch(url, {
                 <pre><code class="language-json">{
     "status": "success",
     "data": {
-        "current_page": 1,
+        "current_page": 2,
         "data": [
-            {
-                "id": 1,
-                "title": "Tặng 1 bánh pizza miễn phí cho ngày sinh nhật của bạn",
-                "description": " Tặng 1 pizza cỡ M (áp dụng cho tất cả các loại pizza trừ số 3, 11 và 12)",
-                "image": "supreme_pizza_large.jpg",
-                "content": "&lt;h3&gt;This is content&lt;\/h3&gt;",
-                "article_category_id": 1,
-                "created_at": "2020-01-06 10:00:00",
-                "updated_at": "2020-01-06 10:00:00"
-            },
-            {
-                "id": 2,
-                "title": "Tặng 1 bánh pizza miễn phí cho ngày sinh nhật của bạn",
-                "description": " Tặng 1 pizza cỡ M (áp dụng cho tất cả các loại pizza trừ số 3, 11 và 12)",
-                "image": "supreme_pizza_large.jpg",
-                "content": "&lt;h3&gt;This is content&lt;\/h3&gt;",
-                "article_category_id": 1,
-                "created_at": "2020-01-06 10:00:00",
-                "updated_at": "2020-01-06 10:00:00"
-            },
-            {
-                "id": 3,
-                "title": "Tặng 1 bánh pizza miễn phí cho ngày sinh nhật của bạn",
-                "description": " Tặng 1 pizza cỡ M (áp dụng cho tất cả các loại pizza trừ số 3, 11 và 12)",
-                "image": "supreme_pizza_large.jpg",
-                "content": "&lt;h3&gt;This is content&lt;\/h3&gt;",
-                "article_category_id": 1,
-                "created_at": "2020-01-06 10:00:00",
-                "updated_at": "2020-01-06 10:00:00"
-            },
-            {
-                "id": 4,
-                "title": "Tặng 1 bánh pizza miễn phí cho ngày sinh nhật của bạn",
-                "description": " Tặng 1 pizza cỡ M (áp dụng cho tất cả các loại pizza trừ số 3, 11 và 12)",
-                "image": "supreme_pizza_large.jpg",
-                "content": "&lt;h3&gt;This is content&lt;\/h3&gt;",
-                "article_category_id": 1,
-                "created_at": "2020-01-06 10:00:00",
-                "updated_at": "2020-01-06 10:00:00"
-            },
-            {
-                "id": 5,
-                "title": "Tặng 1 bánh pizza miễn phí cho ngày sinh nhật của bạn",
-                "description": " Tặng 1 pizza cỡ M (áp dụng cho tất cả các loại pizza trừ số 3, 11 và 12)",
-                "image": "supreme_pizza_large.jpg",
-                "content": "&lt;h3&gt;This is content&lt;\/h3&gt;",
-                "article_category_id": 1,
-                "created_at": "2020-01-06 10:00:00",
-                "updated_at": "2020-01-06 10:00:00"
-            },
-            {
-                "id": 6,
-                "title": "Tặng 1 bánh pizza miễn phí cho ngày sinh nhật của bạn",
-                "description": " Tặng 1 pizza cỡ M (áp dụng cho tất cả các loại pizza trừ số 3, 11 và 12)",
-                "image": "supreme_pizza_large.jpg",
-                "content": "&lt;h3&gt;This is content&lt;\/h3&gt;",
-                "article_category_id": 1,
-                "created_at": "2020-01-06 10:00:00",
-                "updated_at": "2020-01-06 10:00:00"
-            },
-            {
-                "id": 7,
-                "title": "Tặng 1 bánh pizza miễn phí cho ngày sinh nhật của bạn",
-                "description": " Tặng 1 pizza cỡ M (áp dụng cho tất cả các loại pizza trừ số 3, 11 và 12)",
-                "image": "supreme_pizza_large.jpg",
-                "content": "&lt;h3&gt;This is content&lt;\/h3&gt;",
-                "article_category_id": 1,
-                "created_at": "2020-01-06 10:00:00",
-                "updated_at": "2020-01-06 10:00:00"
-            },
-            {
-                "id": 8,
-                "title": "Tặng 1 bánh pizza miễn phí cho ngày sinh nhật của bạn",
-                "description": " Tặng 1 pizza cỡ M (áp dụng cho tất cả các loại pizza trừ số 3, 11 và 12)",
-                "image": "supreme_pizza_large.jpg",
-                "content": "&lt;h3&gt;This is content&lt;\/h3&gt;",
-                "article_category_id": 1,
-                "created_at": "2020-01-06 10:00:00",
-                "updated_at": "2020-01-06 10:00:00"
-            },
-            {
-                "id": 9,
-                "title": "Tặng 1 bánh pizza miễn phí cho ngày sinh nhật của bạn",
-                "description": " Tặng 1 pizza cỡ M (áp dụng cho tất cả các loại pizza trừ số 3, 11 và 12)",
-                "image": "supreme_pizza_large.jpg",
-                "content": "&lt;h3&gt;This is content&lt;\/h3&gt;",
-                "article_category_id": 1,
-                "created_at": "2020-01-06 10:00:00",
-                "updated_at": "2020-01-06 10:00:00"
-            },
-            {
-                "id": 10,
-                "title": "Tặng 1 bánh pizza miễn phí cho ngày sinh nhật của bạn",
-                "description": " Tặng 1 pizza cỡ M (áp dụng cho tất cả các loại pizza trừ số 3, 11 và 12)",
-                "image": "supreme_pizza_large.jpg",
-                "content": "&lt;h3&gt;This is content&lt;\/h3&gt;",
-                "article_category_id": 1,
-                "created_at": "2020-01-06 10:00:00",
-                "updated_at": "2020-01-06 10:00:00"
-            },
-            {
-                "id": 11,
-                "title": "Tặng 1 bánh pizza miễn phí cho ngày sinh nhật của bạn",
-                "description": " Tặng 1 pizza cỡ M (áp dụng cho tất cả các loại pizza trừ số 3, 11 và 12)",
-                "image": "supreme_pizza_large.jpg",
-                "content": "&lt;h3&gt;This is content&lt;\/h3&gt;",
-                "article_category_id": 1,
-                "created_at": "2020-01-06 10:00:00",
-                "updated_at": "2020-01-06 10:00:00"
-            },
-            {
-                "id": 12,
-                "title": "Tặng 1 bánh pizza miễn phí cho ngày sinh nhật của bạn",
-                "description": " Tặng 1 pizza cỡ M (áp dụng cho tất cả các loại pizza trừ số 3, 11 và 12)",
-                "image": "supreme_pizza_large.jpg",
-                "content": "&lt;h3&gt;This is content&lt;\/h3&gt;",
-                "article_category_id": 1,
-                "created_at": "2020-01-06 10:00:00",
-                "updated_at": "2020-01-06 10:00:00"
-            },
-            {
-                "id": 13,
-                "title": "Tặng 1 bánh pizza miễn phí cho ngày sinh nhật của bạn",
-                "description": " Tặng 1 pizza cỡ M (áp dụng cho tất cả các loại pizza trừ số 3, 11 và 12)",
-                "image": "supreme_pizza_large.jpg",
-                "content": "&lt;h3&gt;This is content&lt;\/h3&gt;",
-                "article_category_id": 1,
-                "created_at": "2020-01-06 10:00:00",
-                "updated_at": "2020-01-06 10:00:00"
-            },
-            {
-                "id": 14,
-                "title": "Tặng 1 bánh pizza miễn phí cho ngày sinh nhật của bạn",
-                "description": " Tặng 1 pizza cỡ M (áp dụng cho tất cả các loại pizza trừ số 3, 11 và 12)",
-                "image": "supreme_pizza_large.jpg",
-                "content": "&lt;h3&gt;This is content&lt;\/h3&gt;",
-                "article_category_id": 1,
-                "created_at": "2020-01-06 10:00:00",
-                "updated_at": "2020-01-06 10:00:00"
-            },
-            {
-                "id": 15,
-                "title": "Tặng 1 bánh pizza miễn phí cho ngày sinh nhật của bạn",
-                "description": " Tặng 1 pizza cỡ M (áp dụng cho tất cả các loại pizza trừ số 3, 11 và 12)",
-                "image": "supreme_pizza_large.jpg",
-                "content": "&lt;h3&gt;This is content&lt;\/h3&gt;",
-                "article_category_id": 1,
-                "created_at": "2020-01-06 10:00:00",
-                "updated_at": "2020-01-06 10:00:00"
-            }
-        ],
-        "first_page_url": "http:\/\/localhost\/api\/articles?page=1",
-        "from": 1,
-        "last_page": 10,
-        "last_page_url": "http:\/\/localhost\/api\/articles?page=10",
-        "next_page_url": "http:\/\/localhost\/api\/articles?page=2",
-        "path": "http:\/\/localhost\/api\/articles",
-        "per_page": 15,
-        "prev_page_url": null,
-        "to": 15,
+        {
+            "id": 148,
+            "title": "Tặng 1 bánh pizza miễn phí cho ngày sinh nhật của bạn",
+            "description": " Tặng 1 pizza cỡ M (áp dụng cho tất cả các loại pizza trừ số 3, 11 và 12)",
+            "image": "supreme_pizza_large.jpg",
+            "content": "contnet",
+            "article_category_id": 5,
+            "created_at": "2020-01-06 10:00:00",
+            "updated_at": "2020-01-06 10:00:00"
+        },
+        {
+            "id": 147,
+            "title": "Tặng 1 bánh pizza miễn phí cho ngày sinh nhật của bạn",
+            "description": " Tặng 1 pizza cỡ M (áp dụng cho tất cả các loại pizza trừ số 3, 11 và 12)",
+            "image": "supreme_pizza_large.jpg",
+            "content": "content",
+            "article_category_id": 5,
+            "created_at": "2020-01-06 10:00:00",
+            "updated_at": "2020-01-06 10:00:00"
+        }],
+        "first_page_url": "http://localhost:8000/api/articles?limit=2&page=1",
+        "from": 3,
+        "last_page": 75,
+        "last_page_url": "http://localhost:8000/api/articles?limit=2&page=75",
+        "next_page_url": "http://localhost:8000/api/articles?limit=2&page=3",
+        "path": "http://localhost:8000/api/articles",
+        "per_page": "2",
+        "prev_page_url": "http://localhost:8000/api/articles?limit=2&page=1",
+        "to": 4,
         "total": 150
-    }
+            }
 }</code></pre>
                 <h3>HTTP Request</h3>
                 <p><code>GET api/articles</code></p>
                 <!-- END_0d4cb2104f73e3ee9cf74a52a015de76 -->
                 <!-- START_b9cfac88a54b626b9825ddcc2134f118 -->
-                <h2>Store a newly created resource in storage.</h2>
+                <h2>Created Article</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -1276,11 +1161,31 @@ fetch(url, {
 })
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
+                <blockquote>
+                    <p>Body</p>
+                </blockquote>
+                <pre><code class="language-json">
+                {
+                        "title": "Tặng 1 bánh pizza miễn phí cho ngày sinh nhật của bạn ah nha",
+                        "description": " Tặng 1 pizza cỡ M (áp dụng cho tất cả các loại pizza trừ số 3, 11 và 12)",
+                        "image": "supreme_pizza_large.jpg",
+                        "article_category_id": 5
+                    }
+                </code></pre>
+                <blockquote>
+                    <p>Example response (200):</p>
+                </blockquote>
+                <pre><code class="language-json">
+                    {
+                        "status": "success",
+                        "message": "Thêm thành công "
+                    }
+                </code></pre>
                 <h3>HTTP Request</h3>
                 <p><code>POST api/articles</code></p>
                 <!-- END_b9cfac88a54b626b9825ddcc2134f118 -->
                 <!-- START_a98fdf52c7db91e78049d31130bbb5f1 -->
-                <h2>Display the specified resource.</h2>
+                <h2>View Article</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -1323,7 +1228,7 @@ fetch(url, {
                 <p><code>GET api/articles/{article}</code></p>
                 <!-- END_a98fdf52c7db91e78049d31130bbb5f1 -->
                 <!-- START_725b7ccde91c84ae0ac1703955fcd806 -->
-                <h2>Update the specified resource in storage.</h2>
+                <h2>Update Article</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -1346,12 +1251,32 @@ fetch(url, {
 })
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
+                <blockquote>
+                    <p>Body</p>
+                </blockquote>
+                <pre><code class="language-json">
+                {
+                        "title": "Tặng 1 bánh pizza miễn phí cho ngày sinh nhật của bạn",
+                        "description": " Tặng 1 pizza cỡ M (áp dụng cho tất cả các loại pizza trừ số 3, 11 và 12)",
+                        "image": "supreme_pizza_large.jpg",
+                        "article_category_id": 4
+                    }
+                </code></pre>
+                <blockquote>
+                    <p>Example response (200):</p>
+                </blockquote>
+                <pre><code class="language-json">
+                    {
+                        "status": "success",
+                        "message": "Chỉnh sửa thành công"
+                    }
+                </code></pre>
                 <h3>HTTP Request</h3>
                 <p><code>PUT api/articles/{article}</code></p>
                 <p><code>PATCH api/articles/{article}</code></p>
                 <!-- END_725b7ccde91c84ae0ac1703955fcd806 -->
                 <!-- START_8a228d26f297a77c77c901dc23a49e51 -->
-                <h2>Remove the specified resource from storage.</h2>
+                <h2>Delete Article</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -1378,7 +1303,7 @@ fetch(url, {
                 <p><code>DELETE api/articles/{article}</code></p>
                 <!-- END_8a228d26f297a77c77c901dc23a49e51 -->
                 <!-- START_109013899e0bc43247b0f00b67f889cf -->
-                <h2>Display a listing of the resource.</h2>
+                <h2>List Categories</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -1571,7 +1496,7 @@ fetch(url, {
                 <p><code>GET api/categories</code></p>
                 <!-- END_109013899e0bc43247b0f00b67f889cf -->
                 <!-- START_2335abbed7f782ea7d7dd6df9c738d74 -->
-                <h2>Store a newly created resource in storage.</h2>
+                <h2>Created Category</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -1594,11 +1519,32 @@ fetch(url, {
 })
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
+                <blockquote>
+                    <p>Body</p>
+                </blockquote>
+                <pre><code class="language-json">
+                {
+                        "parent_id": 1,
+                        "name": "Cơm chiên",
+                        "description": "thực đơn đặc biệt",
+                        "image": "cate.jpg",
+                        "icon": null
+                    }
+                </code></pre>
+                <blockquote>
+                    <p>Example response (200):</p>
+                </blockquote>
+                <pre><code class="language-json">
+                    {
+                        "status": "success",
+                        "message": "Thêm thành công "
+                    }
+                </code></pre>
                 <h3>HTTP Request</h3>
                 <p><code>POST api/categories</code></p>
                 <!-- END_2335abbed7f782ea7d7dd6df9c738d74 -->
                 <!-- START_34925c1e31e7ecc53f8f52c8b1e91d44 -->
-                <h2>Display the specified resource.</h2>
+                <h2>View category</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -1644,7 +1590,7 @@ fetch(url, {
                 <p><code>GET api/categories/{category}</code></p>
                 <!-- END_34925c1e31e7ecc53f8f52c8b1e91d44 -->
                 <!-- START_549109b98c9f25ebff47fb4dc23423b6 -->
-                <h2>Update the specified resource in storage.</h2>
+                <h2>Update category</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -1667,12 +1613,33 @@ fetch(url, {
 })
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
+                <blockquote>
+                    <p>Body</p>
+                </blockquote>
+                <pre><code class="language-json">
+                {
+                        "parent_id": 1,
+                        "name": "Cơm chiên dương châu",
+                        "description": "thực đơn đặc biệt",
+                        "image": "cate.jpg",
+                        "icon": null
+                    }
+                </code></pre>
+                <blockquote>
+                    <p>Example response (200):</p>
+                </blockquote>
+                <pre><code class="language-json">
+                    {
+                        "status": "success",
+                        "message": "Chỉnh sửa thành công"
+                    }
+                </code></pre>
                 <h3>HTTP Request</h3>
                 <p><code>PUT api/categories/{category}</code></p>
                 <p><code>PATCH api/categories/{category}</code></p>
                 <!-- END_549109b98c9f25ebff47fb4dc23423b6 -->
                 <!-- START_7513823f87b59040507bd5ab26f9ceb5 -->
-                <h2>Remove the specified resource from storage.</h2>
+                <h2>Delete Catogory</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -1699,7 +1666,7 @@ fetch(url, {
                 <p><code>DELETE api/categories/{category}</code></p>
                 <!-- END_7513823f87b59040507bd5ab26f9ceb5 -->
                 <!-- START_a058bd4f9319edbcca599b1822880435 -->
-                <h2>api/product-category/{id}</h2>
+                <h2>List product follow category</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -1927,7 +1894,7 @@ fetch(url, {
                 <p><code>GET api/product-category/{id}</code></p>
                 <!-- END_a058bd4f9319edbcca599b1822880435 -->
                 <!-- START_3db79f856cbed2669e802338432e5649 -->
-                <h2>api/product-brand/{id}</h2>
+                <h2>List product follow brand</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -1974,16 +1941,16 @@ fetch(url, {
                 <p><code>GET api/product-brand/{id}</code></p>
                 <!-- END_3db79f856cbed2669e802338432e5649 -->
                 <!-- START_d2e080af51835880674d3e2496ed6e62 -->
-                <h2>Display a listing of the resource.</h2>
+                <h2>List order</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
                 <pre><code class="language-bash">curl -X GET \
-    -G "http://localhost/api/order" \
+    -G "http://localhost:8000/api/order?page=1&limit=20&keyword=Gertrude Yost&status=1&fromDate=2020-01-01&toDate=2020-08-08&user_id" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
                 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/order"
+    "http://localhost:8000/api/order?page=1&limit=20&keyword=Gertrude Yost&status=1&fromDate=2020-01-01&toDate=2020-08-08&user_id"
 );
 
 let headers = {
@@ -2000,261 +1967,45 @@ fetch(url, {
                 <blockquote>
                     <p>Example response (200):</p>
                 </blockquote>
-                <pre><code class="language-json">{
+                <pre><code class="language-json">
+                list order follow user_id
+    {
     "status": "success",
     "data": {
         "data": [
+        {
+            "id": 113,
+            "user_id": 113,
+            "name": "Gertrude Yost",
+            "email": "morar.cristian@hotmail.com",
+            "address": "340 Kunde Fields\nWest Kamronchester, KS 68613",
+            "phone": "+1.881.837.7156",
+            "description": "labore",
+            "payment": "17000",
+            "transport": "Viettel Post",
+            "status": 1,
+            "total": "15000000",
+            "details": [
             {
-                "id": 120,
-                "user_id": 120,
-                "name": "Vincent Kshlerin",
-                "email": "ahessel@hotmail.com",
-                "address": "118 Junius Valley\nKesslermouth, VA 75124-8202",
-                "phone": "1-542-253-3301 x3883",
-                "description": "corrupti",
-                "payment": "17000",
-                "transport": "Viettel Post",
-                "status": 2,
-                "total": "15000000",
-                "details": [],
-                "created_at": "29-06-2020",
-                "updated_at": "2005-05-14T00:00:00.000000Z"
-            },
+                "price": "15000000",
+                "qty": 2,
+                "name": "Xà lách trộn kiểu Nga1",
+                "thumbnail": "xa-lach-gcf126-405.jpg"
+            }],
+            "created_at": "30-06-2020",
+            "updated_at": "1980-07-08T00:00:00.000000Z"
+        }],
+        "meta":
+        {
+            "pagination":
             {
-                "id": 119,
-                "user_id": 119,
-                "name": "Rossie Romaguera",
-                "email": "rrunte@harris.com",
-                "address": "9549 Brock Pike Suite 808\nPort Oma, MO 08174",
-                "phone": "1-892-600-7455",
-                "description": "at",
-                "payment": "17000",
-                "transport": "Viettel Post",
-                "status": 0,
-                "total": "15000000",
-                "details": [],
-                "created_at": "29-06-2020",
-                "updated_at": "1977-04-22T00:00:00.000000Z"
-            },
-            {
-                "id": 118,
-                "user_id": 118,
-                "name": "Vernon Little",
-                "email": "raven07@gmail.com",
-                "address": "66720 Kshlerin Valley Suite 290\nPort Jennifer, WY 14842-1878",
-                "phone": "1-737-853-6668",
-                "description": "consequatur",
-                "payment": "17000",
-                "transport": "Viettel Post",
-                "status": 1,
-                "total": "15000000",
-                "details": [],
-                "created_at": "29-06-2020",
-                "updated_at": "1996-02-07T00:00:00.000000Z"
-            },
-            {
-                "id": 117,
-                "user_id": 117,
-                "name": "Teresa West",
-                "email": "blair20@kohler.com",
-                "address": "531 Gunnar Highway Apt. 166\nRuthieton, GA 26915-3145",
-                "phone": "+1-396-669-6313",
-                "description": "quas",
-                "payment": "17000",
-                "transport": "Viettel Post",
-                "status": 1,
-                "total": "15000000",
-                "details": [],
-                "created_at": "29-06-2020",
-                "updated_at": "2004-05-27T00:00:00.000000Z"
-            },
-            {
-                "id": 116,
-                "user_id": 116,
-                "name": "Solon Kovacek",
-                "email": "guadalupe.wisozk@von.net",
-                "address": "4893 Stamm Plains\nKuhictown, PA 07969-0462",
-                "phone": "(615) 903-7943 x229",
-                "description": "corrupti",
-                "payment": "17000",
-                "transport": "Viettel Post",
-                "status": 2,
-                "total": "15000000",
-                "details": [],
-                "created_at": "29-06-2020",
-                "updated_at": "2020-02-07T00:00:00.000000Z"
-            },
-            {
-                "id": 115,
-                "user_id": 115,
-                "name": "Imani Mills Jr.",
-                "email": "zwolf@hauck.com",
-                "address": "8788 Wiley Harbor Suite 399\nEduardobury, ND 85793-2779",
-                "phone": "743-353-0290 x465",
-                "description": "tempore",
-                "payment": "17000",
-                "transport": "Viettel Post",
-                "status": 1,
-                "total": "15000000",
-                "details": [],
-                "created_at": "29-06-2020",
-                "updated_at": "1980-05-12T00:00:00.000000Z"
-            },
-            {
-                "id": 114,
-                "user_id": 114,
-                "name": "Luis Welch",
-                "email": "madonna52@yahoo.com",
-                "address": "5789 Goldner Divide Suite 010\nTyreeview, ND 84790",
-                "phone": "(647) 830-6135",
-                "description": "et",
-                "payment": "17000",
-                "transport": "Viettel Post",
-                "status": 0,
-                "total": "15000000",
-                "details": [],
-                "created_at": "29-06-2020",
-                "updated_at": "2015-12-03T00:00:00.000000Z"
-            },
-            {
-                "id": 113,
-                "user_id": 113,
-                "name": "Gavin Anderson Jr.",
-                "email": "catherine.nitzsche@gutmann.com",
-                "address": "16919 Effertz Motorway Suite 865\nHenrybury, AL 64261-3019",
-                "phone": "(632) 702-2909",
-                "description": "perspiciatis",
-                "payment": "17000",
-                "transport": "Viettel Post",
-                "status": 1,
-                "total": "15000000",
-                "details": [],
-                "created_at": "29-06-2020",
-                "updated_at": "1983-09-08T00:00:00.000000Z"
-            },
-            {
-                "id": 112,
-                "user_id": 112,
-                "name": "Samanta Stiedemann",
-                "email": "lubowitz.emmy@mertz.net",
-                "address": "8196 Albina Drives\nLake Kaitlynberg, RI 39322-6851",
-                "phone": "(612) 865-6904 x708",
-                "description": "facilis",
-                "payment": "17000",
-                "transport": "Viettel Post",
-                "status": 2,
-                "total": "15000000",
-                "details": [],
-                "created_at": "29-06-2020",
-                "updated_at": "2001-09-16T00:00:00.000000Z"
-            },
-            {
-                "id": 111,
-                "user_id": 111,
-                "name": "Bud Kub",
-                "email": "sheaney@gmail.com",
-                "address": "9974 Rohan Circle\nTremayneville, NM 52736",
-                "phone": "901.807.3145 x005",
-                "description": "et",
-                "payment": "17000",
-                "transport": "Viettel Post",
-                "status": 1,
-                "total": "15000000",
-                "details": [],
-                "created_at": "29-06-2020",
-                "updated_at": "2013-01-27T00:00:00.000000Z"
-            },
-            {
-                "id": 110,
-                "user_id": 110,
-                "name": "Prof. Amir Harber III",
-                "email": "monahan.maye@gmail.com",
-                "address": "14592 Fisher Gateway Suite 842\nNorth Brock, VA 10311",
-                "phone": "734.301.0513",
-                "description": "temporibus",
-                "payment": "17000",
-                "transport": "Viettel Post",
-                "status": 2,
-                "total": "15000000",
-                "details": [],
-                "created_at": "29-06-2020",
-                "updated_at": "1971-03-10T00:00:00.000000Z"
-            },
-            {
-                "id": 109,
-                "user_id": 109,
-                "name": "Stefanie Fisher I",
-                "email": "tomasa09@hotmail.com",
-                "address": "7895 Kirlin Avenue\nEast Murphy, MA 00019-7035",
-                "phone": "(282) 926-8311 x1886",
-                "description": "aut",
-                "payment": "17000",
-                "transport": "Viettel Post",
-                "status": 2,
-                "total": "15000000",
-                "details": [],
-                "created_at": "29-06-2020",
-                "updated_at": "1973-10-21T00:00:00.000000Z"
-            },
-            {
-                "id": 108,
-                "user_id": 108,
-                "name": "Gregory Dare",
-                "email": "misael.christiansen@rogahn.com",
-                "address": "1265 Kurtis Pine Apt. 626\nPort Kamron, AK 81554",
-                "phone": "212-562-8062",
-                "description": "et",
-                "payment": "17000",
-                "transport": "Viettel Post",
-                "status": 1,
-                "total": "15000000",
-                "details": [],
-                "created_at": "29-06-2020",
-                "updated_at": "2015-12-28T00:00:00.000000Z"
-            },
-            {
-                "id": 107,
-                "user_id": 107,
-                "name": "Holly Borer",
-                "email": "xmorar@gmail.com",
-                "address": "730 Will Park\nDarylbury, RI 02666",
-                "phone": "413-747-0712 x46326",
-                "description": "suscipit",
-                "payment": "17000",
-                "transport": "Viettel Post",
-                "status": 1,
-                "total": "15000000",
-                "details": [],
-                "created_at": "29-06-2020",
-                "updated_at": "1972-03-24T00:00:00.000000Z"
-            },
-            {
-                "id": 106,
-                "user_id": 106,
-                "name": "Carlo Hettinger",
-                "email": "velma.johnston@kshlerin.com",
-                "address": "6330 Maxime Crossing Apt. 038\nRuthefort, FL 15248-7658",
-                "phone": "+1-250-251-8506",
-                "description": "maxime",
-                "payment": "17000",
-                "transport": "Viettel Post",
-                "status": 2,
-                "total": "15000000",
-                "details": [],
-                "created_at": "29-06-2020",
-                "updated_at": "2000-12-17T00:00:00.000000Z"
-            }
-        ],
-        "meta": {
-            "pagination": {
-                "total": 120,
-                "count": 15,
-                "per_page": 15,
+                "total": 1,
+                "count": 1,
+                "per_page": 20,
                 "current_page": 1,
-                "total_pages": 8,
-                "links": {
-                    "next": "http:\/\/localhost\/api\/order?page=2"
-                }
+                "total_pages": 1,
+                "links":
+                {}
             }
         }
     }
@@ -2263,7 +2014,7 @@ fetch(url, {
                 <p><code>GET api/order</code></p>
                 <!-- END_d2e080af51835880674d3e2496ed6e62 -->
                 <!-- START_cd95d3e90339c282e0b608349e80a381 -->
-                <h2>Store a newly created resource in storage.</h2>
+                <h2>ERROR</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -2290,7 +2041,7 @@ fetch(url, {
                 <p><code>POST api/order</code></p>
                 <!-- END_cd95d3e90339c282e0b608349e80a381 -->
                 <!-- START_9c4ec790d3f07a332b085b8efc187b58 -->
-                <h2>Display the specified resource.</h2>
+                <h2>View order</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -2341,7 +2092,7 @@ fetch(url, {
                 <p><code>GET api/order/{order}</code></p>
                 <!-- END_9c4ec790d3f07a332b085b8efc187b58 -->
                 <!-- START_7e6a4bec449169aefb738a72d134f654 -->
-                <h2>Update the specified resource in storage.</h2>
+                <h2>ERROR</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -2369,7 +2120,7 @@ fetch(url, {
                 <p><code>PATCH api/order/{order}</code></p>
                 <!-- END_7e6a4bec449169aefb738a72d134f654 -->
                 <!-- START_13abedc865b3acba6db70061a19ecb09 -->
-                <h2>Remove the specified resource from storage.</h2>
+                <h2>Delete Order</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -2396,16 +2147,16 @@ fetch(url, {
                 <p><code>DELETE api/order/{order}</code></p>
                 <!-- END_13abedc865b3acba6db70061a19ecb09 -->
                 <!-- START_f329965099e51ed43db3cbc48425d11d -->
-                <h2>api/order/updateStatus</h2>
+                <h2>Update status in Order</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
                 <pre><code class="language-bash">curl -X POST \
-    "http://localhost/api/order/updateStatus" \
+    "http://localhost:8000/api/order/updateStatus?id=2&status=2" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
                 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/order/updateStatus"
+    "http://localhost:8000/api/order/updateStatus?id=2&status=2"
 );
 
 let headers = {
@@ -2419,11 +2170,26 @@ fetch(url, {
 })
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
+                <blockquote>
+                    <p>Params</p>
+                </blockquote>
+                <pre><code class="language-json">
+                id & status
+                </code></pre>
+                <blockquote>
+                    <p>Example response (200):</p>
+                </blockquote>
+                <pre><code class="language-json">
+                    {
+                        "status": "success",
+                        "message": "Thay đổi trạng thái thành công"
+                    }
+                </code></pre>
                 <h3>HTTP Request</h3>
                 <p><code>POST api/order/updateStatus</code></p>
                 <!-- END_f329965099e51ed43db3cbc48425d11d -->
                 <!-- START_acb8269be2928b6a8d3878ae76e8e34a -->
-                <h2>api/carts</h2>
+                <h2>Only use FE laravel api/carts</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -2456,7 +2222,7 @@ fetch(url, {
                 <p><code>GET api/carts</code></p>
                 <!-- END_acb8269be2928b6a8d3878ae76e8e34a -->
                 <!-- START_209151df6d4ff372c60684bbc809008a -->
-                <h2>api/carts/{id}/add</h2>
+                <h2>Only use FE laravel api/carts/{id}/add</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -2489,7 +2255,7 @@ fetch(url, {
                 <p><code>GET api/carts/{id}/add</code></p>
                 <!-- END_209151df6d4ff372c60684bbc809008a -->
                 <!-- START_99562a66acd9bba9a98e3010fb634c93 -->
-                <h2>api/carts/{id}/remove</h2>
+                <h2>Only use FE laravel api/carts/{id}/remove</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -2522,7 +2288,7 @@ fetch(url, {
                 <p><code>GET api/carts/{id}/remove</code></p>
                 <!-- END_99562a66acd9bba9a98e3010fb634c93 -->
                 <!-- START_fb57d129e8046b5e7ba2bf8276a51238 -->
-                <h2>api/carts/{id}/update</h2>
+                <h2>Only use FE laravel api/carts/{id}/update</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -2549,7 +2315,7 @@ fetch(url, {
                 <p><code>POST api/carts/{id}/update</code></p>
                 <!-- END_fb57d129e8046b5e7ba2bf8276a51238 -->
                 <!-- START_1ae2cc25e1afb2b87a70a92c6cd5a56a -->
-                <h2>api/order/create</h2>
+                <h2>Created Order</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -2572,11 +2338,36 @@ fetch(url, {
 })
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
+                <blockquote>
+                    <p>Body</p>
+                </blockquote>
+                <pre><code class="language-json">
+                    {
+                        "user_id": null,
+                        "name": "KyoRom1",
+                        "email": "thuy@gmail.com",
+                        "address": "408 trưng nữ vương, đà nẵng",
+                        "phone": "sdfasdf",
+                        "description": null,
+                        "payment": null,
+                        "transport": null,
+                        "status": 0,
+                        "gender": 1
+                    }
+                </code></pre>
+                <blockquote>
+                    <p>Example response (200):</p>
+                </blockquote>
+                <pre><code class="language-json">
+                    {
+                        "message": "Bạn đã create giỏ hàng thành công"
+                    }
+                </code></pre>
                 <h3>HTTP Request</h3>
                 <p><code>POST api/order/create</code></p>
                 <!-- END_1ae2cc25e1afb2b87a70a92c6cd5a56a -->
                 <!-- START_c3fa189a6c95ca36ad6ac4791a873d23 -->
-                <h2>api/login</h2>
+                <h2>Login</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -2599,11 +2390,45 @@ fetch(url, {
 })
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
+                <blockquote>
+                    <p>Body, token auth</p>
+                </blockquote>
+                <pre><code class="language-json">
+                    {
+                        "email": "admin@email.com",
+                        "password": "12345"
+                    }
+                </code></pre>
+                <blockquote>
+                    <p>Example response (200):</p>
+                </blockquote>
+                <pre><code class="language-json">
+                    {
+                        "success": true,
+                        "data": [
+                            {
+                                "id": 1,
+                                "name": "admin",
+                                "email": "admin@email.com",
+                                "email_verified_at": null,
+                                "gender": null,
+                                "address": null,
+                                "phone": null,
+                                "avatar": "avatar.jpg",
+                                "is_admin": 0,
+                                "status": "Active",
+                                "created_at": null,
+                                "updated_at": null
+                            }
+                        ],
+                        "error": ""
+                    }
+                </code></pre>
                 <h3>HTTP Request</h3>
                 <p><code>POST api/login</code></p>
                 <!-- END_c3fa189a6c95ca36ad6ac4791a873d23 -->
                 <!-- START_90f45d502fd52fdc0b289e55ba3c2ec6 -->
-                <h2>api/signup</h2>
+                <h2>Signup</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -2626,11 +2451,31 @@ fetch(url, {
 })
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
+                <blockquote>
+                    <p>Body, token auth</p>
+                </blockquote>
+                <pre><code class="language-json">
+                    {
+                        "email": "paykao@gmail.com",
+                        "name": "KyoRom1",
+                        "password": "12345",
+                        "cpassword": "12345"
+                    }
+                </code></pre>
+                <blockquote>
+                    <p>Example response (200):</p>
+                </blockquote>
+                <pre><code class="language-json">
+                    {
+                        "message": "Đã đăng ký thành công, xin mời đăng nhập !",
+                        "status": "success"
+                    }
+                </code></pre>
                 <h3>HTTP Request</h3>
                 <p><code>POST api/signup</code></p>
                 <!-- END_90f45d502fd52fdc0b289e55ba3c2ec6 -->
                 <!-- START_61739f3220a224b34228600649230ad1 -->
-                <h2>api/logout</h2>
+                <h2>Logout</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -2657,16 +2502,16 @@ fetch(url, {
                 <p><code>POST api/logout</code></p>
                 <!-- END_61739f3220a224b34228600649230ad1 -->
                 <!-- START_9bbfc13f0750a7e9c27c0786a5f67e0a -->
-                <h2>api/user/{id}</h2>
+                <h2>View user</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
                 <pre><code class="language-bash">curl -X GET \
-    -G "http://localhost/api/user/1" \
+    -G "http://localhost/api/user" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
                 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/user/1"
+    "http://localhost/api/user"
 );
 
 let headers = {
@@ -2684,14 +2529,27 @@ fetch(url, {
                     <p>Example response (400):</p>
                 </blockquote>
                 <pre><code class="language-json">{
-    "error": true,
-    "message": "error"
-}</code></pre>
+                    "status": "success",
+                    "data": {
+                        "id": 1,
+                        "name": "admin",
+                        "email": "admin@email.com",
+                        "email_verified_at": null,
+                        "gender": null,
+                        "address": null,
+                        "phone": null,
+                        "avatar": "avatar.jpg",
+                        "is_admin": 0,
+                        "status": "Active",
+                        "created_at": null,
+                        "updated_at": null
+                    }
+                }</code></pre>
                 <h3>HTTP Request</h3>
-                <p><code>GET api/user/{id}</code></p>
+                <p><code>GET api/user</code></p>
                 <!-- END_9bbfc13f0750a7e9c27c0786a5f67e0a -->
                 <!-- START_2e8bfad8b5ee0d3e9c3ecb359efaa492 -->
-                <h2>api/user/update/{id}</h2>
+                <h2>Update User</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -2714,11 +2572,35 @@ fetch(url, {
 })
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
+                <blockquote>
+                    <p>Body, token auth</p>
+                </blockquote>
+                <pre><code class="language-json">
+                {
+                        "name": "admin_01",
+                        "email": "admin@email.com",
+                        "email_verified_at": null,
+                        "gender": null,
+                        "address": "trung nu vuong",
+                        "phone": null,
+                        "avatar": "avatar.jpg",
+                        "is_admin": 0
+                    }
+                </code></pre>
+                <blockquote>
+                    <p>Example response (200):</p>
+                </blockquote>
+                <pre><code class="language-json">
+                {
+                        "status": "success",
+                        "messsage": "Chỉnh sửa sản phẩm thành công"
+                    }
+                </code></pre>
                 <h3>HTTP Request</h3>
                 <p><code>POST api/user/update/{id}</code></p>
                 <!-- END_2e8bfad8b5ee0d3e9c3ecb359efaa492 -->
                 <!-- START_9b8dd9b5728ff76460a0238f5a08e87f -->
-                <h2>api/user/changePassword/{id}</h2>
+                <h2>Change Password User</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -2741,11 +2623,29 @@ fetch(url, {
 })
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
+                <blockquote>
+                    <p>Body</p>
+                </blockquote>
+                <pre><code class="language-json">
+                {
+                        "oldpassword": "123456",
+                        "newpassword": "12345",
+                        "cnewpassword": "12345",
+                    }
+                </code></pre>
+                <blockquote>
+                    <p>Example response (200):</p>
+                </blockquote>
+                <pre><code class="language-json">
+                    {
+                        "status": "Thay đổi mật khẩu thành công"
+                    }
+                </code></pre>
                 <h3>HTTP Request</h3>
                 <p><code>POST api/user/changePassword/{id}</code></p>
                 <!-- END_9b8dd9b5728ff76460a0238f5a08e87f -->
                 <!-- START_e89023096f9286fd231ccec7dd6a0439 -->
-                <h2>api/cart/user</h2>
+                <h2>List Cart follow User</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -2768,11 +2668,56 @@ fetch(url, {
 })
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
+                <blockquote>
+                    <p>Auth</p>
+                </blockquote>
+                <pre><code class="language-json">
+                Login User take token
+                </code></pre>
+                <blockquote>
+                    <p>Example response (200):</p>
+                </blockquote>
+                <pre><code class="language-json">
+                    {
+                        "status": "success",
+                        "data": {
+                            "current_page": 1,
+                            "data": [
+                                {
+                                    "id": 2,
+                                    "user_id": 1,
+                                    "name": "Everett Dooley",
+                                    "gender": 1,
+                                    "email": "jacobi.seth@runolfsson.com",
+                                    "phone": "(318) 531-9480",
+                                    "address": "94233 Dooley Streets Suite 634\nLake Loycechester, PA 48773-7887",
+                                    "description": "expedita",
+                                    "payment": "17000",
+                                    "transport": "Viettel Post",
+                                    "status": 2,
+                                    "total": "15000000.00",
+                                    "created_at": "2020-06-30 07:53:03",
+                                    "updated_at": "2020-07-01 04:05:14"
+                                }
+                            ],
+                            "first_page_url": "http://localhost:8000/api/cart/user?page=1",
+                            "from": 1,
+                            "last_page": 1,
+                            "last_page_url": "http://localhost:8000/api/cart/user?page=1",
+                            "next_page_url": null,
+                            "path": "http://localhost:8000/api/cart/user",
+                            "per_page": 10,
+                            "prev_page_url": null,
+                            "to": 1,
+                            "total": 1
+                        }
+                    }
+                </code></pre>
                 <h3>HTTP Request</h3>
                 <p><code>GET api/cart/user</code></p>
                 <!-- END_e89023096f9286fd231ccec7dd6a0439 -->
                 <!-- START_3045eab9b818156433434f751510823f -->
-                <h2>api/cart/{id}</h2>
+                <h2>ERROR</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -2796,10 +2741,10 @@ fetch(url, {
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
                 <h3>HTTP Request</h3>
-                <p><code>GET api/cart/{id}</code></p>
+                <p><code>ERROR</code></p>
                 <!-- END_3045eab9b818156433434f751510823f -->
                 <!-- START_31ffac3a110ca4858e085244a686e611 -->
-                <h2>api/cart/{id}</h2>
+                <h2>ERROR</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -2826,7 +2771,7 @@ fetch(url, {
                 <p><code>DELETE api/cart/{id}</code></p>
                 <!-- END_31ffac3a110ca4858e085244a686e611 -->
                 <!-- START_70299d96b6b738f70d3e06e58bb051a9 -->
-                <h2>api/product/{id}/comment</h2>
+                <h2>Created Comment</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>
@@ -2849,11 +2794,30 @@ fetch(url, {
 })
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
+                <blockquote>
+                    <p>Auth</p>
+                </blockquote>
+                <pre><code class="language-json">
+                Login User take token
+                Body: 
+                {
+                        "product_id": "1",
+                        "comment": "Good",
+                    }
+                </code></pre>
+                <blockquote>
+                    <p>Example response (200):</p>
+                </blockquote>
+                <pre><code class="language-json">
+                    {
+                        "status": "Thêm thành bình luận thành công"
+                    }
+                </code></pre>
                 <h3>HTTP Request</h3>
                 <p><code>POST api/product/{id}/comment</code></p>
                 <!-- END_70299d96b6b738f70d3e06e58bb051a9 -->
                 <!-- START_79440f0eff63910eb430f2c9f55ea537 -->
-                <h2>api/comment/{id}</h2>
+                <h2>Delete Comment</h2>
                 <blockquote>
                     <p>Example request:</p>
                 </blockquote>

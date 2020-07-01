@@ -42,8 +42,8 @@ class CategoriesController extends Controller
         $categories = $this->repository->skipPresenter()->get()->toTree();
         if (request()->wantsJson()) {
             return response()->json([
-                'data' => $categories,
                 'status' => 'success',
+                'data' => $categories,
             ]);
         }
     }

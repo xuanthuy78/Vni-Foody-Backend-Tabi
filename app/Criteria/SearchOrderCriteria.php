@@ -39,6 +39,10 @@ class SearchOrderCriteria implements CriteriaInterface
             $toDate = strval(request()->get('toDate'));
             $model = $model->whereBetween('created_at', [$fromDate . " 00:00:00", $toDate . " 23:59:59"]);
         }
+        if (request()->get('user_id')) {
+            $user_id = request()->get('user_id');
+            $model = $model->where('user_id', $user_id);
+        }
         $model = $model->orderBy('id', 'DESC');
         return $model;
     }
