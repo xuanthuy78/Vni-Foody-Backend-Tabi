@@ -1,6 +1,23 @@
-composer install
-php artisan key:generate
-php artisan migrate
+composer install <br>
+php artisan key:generate <br>
+php artisan migrate <br>
+php artisan make:controller UserController --resource <br>
+php artisan make:request CreateUserSignUpRequest <br>
+php artisan make:presenter Orders <br>
+php artisan make:repository User <br>
+php artisan make:validator User <br>
+php artisan make:transformer Product <br>
+php artisan make:criteria  SearchOrder <br>
+php artisan make:entity Comment <br>
+php artisan make:presenter Orders <br>
+php artisan jwt:secret <br>
+php artisan cache:clear <br>
+php artisan config:clear <br>
+php artisan db:seed --class=UserTableSeeder <br>
+php artisan migrate:fresh <br>
+php artisan make:migration create_comments_table --create=comments <br>
+php artisan make:seeder CommentSeeder <br>
+php artisan db:seed --class=CommentsTableSeeder <br>
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
