@@ -2,18 +2,18 @@
 
 namespace App\Repositories;
 
-use App\Entities\Article;
-use App\Presenters\ArticlePresenter;
-use App\Repositories\ArticleRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
+use Prettus\Repository\Criteria\RequestCriteria;
+use App\Repositories\ArticleCategoryRepository;
+use App\Entities\ArticleCategory;
+use App\Validators\ArticleCategoryValidator;
 
 /**
- * Class ArticleRepositoryEloquent.
+ * Class ArticleCategoryRepositoryEloquent.
  *
  * @package namespace App\Repositories;
  */
-class ArticleRepositoryEloquent extends BaseRepository implements ArticleRepository
+class ArticleCategoryRepositoryEloquent extends BaseRepository implements ArticleCategoryRepository
 {
     /**
      * Specify Model class name
@@ -22,13 +22,10 @@ class ArticleRepositoryEloquent extends BaseRepository implements ArticleReposit
      */
     public function model()
     {
-        return Article::class;
+        return ArticleCategory::class;
     }
 
-    public function presenter()
-    {
-        return ArticlePresenter::class;
-    }
+    
 
     /**
      * Boot up the repository, pushing criteria
@@ -37,5 +34,5 @@ class ArticleRepositoryEloquent extends BaseRepository implements ArticleReposit
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
-
+    
 }
