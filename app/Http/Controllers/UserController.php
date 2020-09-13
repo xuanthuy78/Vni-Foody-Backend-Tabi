@@ -50,7 +50,12 @@ class UserController extends Controller
         $credentials = $request->only('email', 'password');
         if ($token = $this->guard()->attempt($credentials)) {
             $user = Auth::user();
-            return response()->json(new JsonResponse([$user]), Response::HTTP_OK)->header('Authorization', $token);
+            return response()->json([
+                "data" => $token,
+                "user" => $user,
+                "error" => "",
+                "success" => true
+            ],Response::HTTP_OK)->header('Authorization', $token);;
         }
         return response()->json(new JsonResponse([], 'Mật khẩu không đúng'), Response::HTTP_UNAUTHORIZED);
     }
