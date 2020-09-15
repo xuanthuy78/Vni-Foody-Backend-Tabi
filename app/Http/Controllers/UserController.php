@@ -52,10 +52,10 @@ class UserController extends Controller
             $user = Auth::user();
             return response()->json([
                 "data" => $token,
-                "user" => $user,
+                "account" => $user,
                 "error" => "",
-                "success" => true
-            ],Response::HTTP_OK)->header('Authorization', $token);;
+                "success" => true,
+            ], Response::HTTP_OK)->header('Authorization', $token);
         }
         return response()->json(new JsonResponse([], 'Mật khẩu không đúng'), Response::HTTP_UNAUTHORIZED);
     }
