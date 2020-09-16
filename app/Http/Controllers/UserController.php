@@ -53,7 +53,6 @@ class UserController extends Controller
             return response()->json([
                 "data" => $token,
                 "account" => $user,
-                "error" => "",
                 "success" => true,
             ], Response::HTTP_OK)->header('Authorization', $token);
         }
