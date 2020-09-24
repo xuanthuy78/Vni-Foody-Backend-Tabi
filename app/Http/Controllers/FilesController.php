@@ -42,7 +42,6 @@ class FilesController extends Controller
             );
 
         } catch (ValidatorException $e) {
-            dd($e);
             if ($request->wantsJson()) {
                 return response()->json([
                     'error' => true,
