@@ -2,10 +2,10 @@
 
 namespace App\Repositories;
 
+use App\Criteria\SearchArticleCriteria;
 use App\Entities\Article;
 use App\Presenters\ArticlePresenter;
 use App\Repositories\ArticleRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
@@ -35,7 +35,7 @@ class ArticleRepositoryEloquent extends BaseRepository implements ArticleReposit
      */
     public function boot()
     {
-        $this->pushCriteria(app(RequestCriteria::class));
+        $this->pushCriteria(SearchArticleCriteria::class);
     }
 
 }
