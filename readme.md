@@ -1,3 +1,10 @@
+//install
+1. install componser
+2. php composer.phar install
+
+
+
+//
 composer install <br>
 php artisan key:generate <br>
 php artisan migrate <br>
